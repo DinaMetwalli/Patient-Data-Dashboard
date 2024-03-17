@@ -10,6 +10,8 @@ When creating a new feature (e.g. you're assigned to work on the Patient class a
 To create a new branch, use `git checkout -b <branchname>` and replace the <> with the name of your branch.
 When switching to a branch that already exists, use `git checkout <branchname>`.
 
+You can check the branch you're currently on using `git branch`.
+
 ## Committing
 Committing your changes to the code is done using `git commit`. When you type this command on vscode, a new file will open up temporarily for you to type in the commit message. After typing the message you can save the file and close it using `Ctrl + W` and then pressing save. This will commit your changes.
 
