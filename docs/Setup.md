@@ -15,16 +15,20 @@ git clone https://github.com/DinaMetwalli/feeding-dashboard.git
 git pull
 ```
 
-## Create Virtual Environment
+## Virtual Environment
+### Create venv
 ```bash
 py -m venv .venv
 ```
 ### Activate Venv:
+```bash
 WINDOWS: .\.venv\Scripts\activate.bat
 LINUX: source .venv/bin/activate
+```
+Note: if the bottom right corner of vscode does not show the interpeter as ('venv':venv) then simply close vscode and go to the directory where the project is located, then right click > open in code. Now it should work as expected!
 ### Install Requirements:
 ```bash
-py -m pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Install Node.js
