@@ -72,3 +72,34 @@ class MLAlgorithm():
 
             # Save the best model
 
+        self.extract_result()
+
+    def extract_result(self):
+
+        # Load the CSV file containing all patient data
+        # all_data = pd.read_csv("Feeding Dashboard data.csv")
+
+        # Extract features from the entire dataset
+        X_all = self.data[self.features]
+
+        # Predict probabilities for each patient using the trained models
+        svm_probs_all = self.results['SVM'].predict_proba(X_all)[:, 1]
+        rf_probs_all = self.results['RandomForest'].predict_proba(X_all)[:, 1]
+
+        # Define a threshold to classify patients as referred or not referred
+        threshold = 0.5  # You can adjust this threshold based on your preference and model performance
+
+        # Classify patients as referred or not referred based on the threshold
+        svm_predictions_all = (svm_probs_all >= threshold).astype(int)
+        rf_predictions_all = (rf_probs_all >= threshold).astype(int)
+
+        # Create a DataFrame to store the predictions
+        predictions_df = pd.DataFrame(
+            {'encounterId': self.data['encounterId'],  # Assuming 'encounterId' is the correct column name
+             'SVM_Prediction': svm_predictions_all,
+             'RandomForest_Prediction': rf_predictions_all})
+
+        # Save the predictions to a CSV file
+        predictions_df.to_csv("predictions.csv", index=False)
+
+        print("Predictions saved to predictions.csv file.")
