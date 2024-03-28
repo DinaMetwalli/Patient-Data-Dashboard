@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 
 def main():
-
     app: Flask = Flask("Feeding Dashboard")
 
     @app.route('/')
