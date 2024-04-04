@@ -16,10 +16,11 @@ class ParseCSV():
         return cls._instance
     
     def import_csv(self):
-        file_path = "Data.csv"
+        file_path = "src/CSVParser/Data.csv"
         if os.path.exists(file_path):
             # Load the CSV file
             self.data = pd.read_csv(file_path)
+            self.data.fillna(value="", inplace=True)
             print("CSV file imported successfully.")
         else:
             print("File not found.")
