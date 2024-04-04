@@ -2,9 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Patients Data</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="sidebar">
+        <a href="index.html">Dashboard</a>
+        <a href="pd-view.html">View Patient Data</a>
+        <a href="pd-analysis.html">Analyze Patient Data</a>
+        <a href="#">About</a>
+        <a href="#">Help</a>
+    </div>
 
+    <div class="container">
+        <div class="title-container">
+            <h1>View Patients Data</h1>
+        </div>
+
+        <div class="filter-container">
+        <div class="radio-buttons">
+            <input type="radio" id="all" name="filter" value="all" checked>
+            <label for="all">All</label>
+
+            <input type="radio" id="do-not-need-referral" name="filter" value="do-not-need-referral">
+            <label for="do-not-need-referral">Do not need referral</label>
+
+            <input type="radio" id="need-referral" name="filter" value="need-referral">
+            <label for="need-referral">Need referral</label>
+
+            <input type="radio" id="referred" name="filter" value="referred">
+            <label for="referred">Referred</label>
+        </div>
+
+        <div class="button-container">
+            <button id="filter-button">Filter</button>
+            <button id="export-all-button">Export All</button>
+        </div>
+    </div>
+    </div>
+
+
+        </div>
+
+        <div class="patient-data">
+            <table>
+                <thead>
+                    <tr>
+                        <th>HEADER 1</th>
+                        <th>HEADER 2</th>
+                        <th>HEADER 3</th>
+                        <th>HEADER 4</th>
+                        <th>HEADER 5</th>
+                        <th>HEADER 6</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample data, replace with actual patient data -->
+                    <tr>
+                        <td>Peter</td>
+                        <td>piper</td>
+                        <td>picked</td>
+                        <td>a peck</td>
+                        <td>of pickled</td>
+                        <td>peppers </td>
+                    </tr>
+                    <tr>
+                        <td>a peck</td>
+                        <td>of pickled</td>
+                        <td>peppers</td>
+                        <td>peter</td>
+                        <td>pipper</td>
+                        <td>picked</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
