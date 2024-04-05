@@ -2,6 +2,7 @@
 from enum import Enum
 from typing import Any
 from flask import jsonify
+
 class Status(Enum):
     """Enum with http status code."""
 
