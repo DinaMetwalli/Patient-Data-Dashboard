@@ -1,5 +1,4 @@
 from flask import Flask, request
-from .api.utils.FSrouter import FSRouter
 from example.src.api.routes.calculate.data import post
 
 def main():
