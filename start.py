@@ -1,1 +1,3 @@
-print("Hello World")
+from example.src.main import main
+
+main()
