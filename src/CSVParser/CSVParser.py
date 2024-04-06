@@ -16,7 +16,7 @@ class ParseCSV():
         return cls._instance
     
     def import_csv(self):
-        file_path = "src/CSVParser/Data.csv"
+        file_path = "Data.csv"
         if os.path.exists(file_path):
             # Load the CSV file
             self.data = pd.read_csv(file_path)
