@@ -17,7 +17,16 @@ class ParseCSV():
 
         return cls._instance
     
-    def import_csv(self, import_name: str) -> pd.DataFrame | None:
+    def import_csv(self, import_name: str) -> pd.DataFrame:
+        """
+        Imports the given CSV file
+
+        Parameters:
+            import_name (str): name of CSV file to be imported and parsed
+
+        Returns:
+            self.data (DataFrame): parsed data
+        """
         file_path = f"src/CSVParser/{import_name}"
         
         if os.path.exists(file_path):
@@ -30,9 +39,15 @@ class ParseCSV():
             return self.data
         
         else:
-            print("File not found.")
+            raise Exception("File not found.")
 
     def export_csv(self, export_name: str) -> None:
+        """
+        Exports the parsed CSV file
+
+        Parameters:
+            export_name (str): name of CSV file to be exported
+        """
         try:
             if self.data is not None:
                 # Export DataFrame to CSV
