@@ -8,15 +8,22 @@ from reportlab.graphics.charts.barcharts import VerticalBarChart
 from reportlab.graphics.charts.textlabels import Label
 from reportlab.graphics.shapes import Drawing, String
 
-import os
-
 from .ReportGenerator import Report
+
+import os
 
 class AverageReport():
         def __init__(self) -> None:
             self.report = Report()
 
         def generate_average_data_report(self, csv_file, export_file) -> None:
+            """
+            Generates report for overall average patient data
+
+            Parameters:
+                csv_file (str): name of CSV file to be parsed
+                export_file (str): desired name of export PDF file
+            """
             desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
             pdf_file = os.path.join(desktop_path, export_file)
 

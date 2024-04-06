@@ -6,11 +6,27 @@ class Report():
         self.parser = ParseCSV()
     
     def parse_csv_data(self, csv_file) -> pd.DataFrame:
+        """
+        Uses Parser to parse provided CSV file.
+
+        Parameters:
+            csv_file (str): name of CSV file to be parsed
+
+        Returns:
+            self.data (DataFrame): parsed data
+        """
         self.data = self.parser.import_csv(csv_file)
 
         return self.data
 
     def caculate_average_data(self) -> dict:
+        """
+        Calculates overall average of patient data
+
+        Returns:
+            averages (dict): a dictionary of calculated averages
+                             maps the value to its total and count
+        """
         measurements = {}
         for column in self.data.columns:
             if (column != "encounterId") and (column != "referral"):

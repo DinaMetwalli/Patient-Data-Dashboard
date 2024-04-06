@@ -17,7 +17,18 @@ class PatientReport():
     def __init__(self) -> None:
         self.report = Report()
 
-    def fetch_patient_data(self, patient_id, csv_file) -> None:
+    def fetch_patient_data(self, patient_id, csv_file) -> dict:
+        """
+        Fetches specific patient's data from CSV file using Parser
+
+        Parameters:
+            csv_file (str): name of CSV file to be parsed
+            patient_id (int): ID of patient to fetch data of
+
+        Returns:
+            patient_data (dict): a dictionary of the patient data
+                                 maps column to its cell value
+        """
         data = self.report.parse_csv_data(csv_file)
         self.averages = self.report.caculate_average_data()
 
@@ -39,6 +50,14 @@ class PatientReport():
             raise Exception(f"No matching records found for patient {patient_id}.")
         
     def generate_patient_data_report(self, patient_id, csv_file, export_file) -> None:
+        """
+        Generates report for specific patient's analytics
+
+        Parameters:
+            csv_file (str): name of CSV file to be parsed
+            export_file (str): desired name of export PDF file
+            patient_id (int): ID of patient to fetch data of
+        """
         desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
         pdf_file = os.path.join(desktop_path, export_file)
 
