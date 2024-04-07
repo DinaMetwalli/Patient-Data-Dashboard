@@ -1,0 +1,1 @@
+// To process "home.html"'s requests and send reponses through the API.

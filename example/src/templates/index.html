@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <div class="dashboard">
+            <div class="data">
+                <h2>Data from CSV</h2>
+                <table>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>City</th>
+                    </tr>
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row['First Name'] }}</td>
+                        <td>{{ row['Last Name'] }}</td>
+                        <td>{{ row['City'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="graph">
+                <h2>City Distribution</h2>
+                <canvas id="cityChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('cityChart').getContext('2d');
+            var cities = {{ cities|tojson }};
+            var percentages = [30, 25, 20, 15, 10]; // Sample percentages for each city
+
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: cities,
+                    datasets: [{
+                        label: 'City Distribution',
+                        data: percentages,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right'
+                        },
+                        title: {
+                            display: true,
+                            text: 'City Distribution'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
