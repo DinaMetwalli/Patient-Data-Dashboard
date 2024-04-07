@@ -23,4 +23,4 @@ def import_csv():
         return jsonify({"success": False, "message": str(e)})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=6002, host="0.0.0.0")
