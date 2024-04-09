@@ -1,5 +1,5 @@
 import pytest
-from src.Patients.Patients import Patient, DietaryRequirements
+from src.Patients.Patients import Patient, DietaryRequirements, RespiratoryMeasurments
 
 def test_create_instance():
     global patient
@@ -20,3 +20,9 @@ def test_dietary_req():
     assert isinstance(dietary_data, DietaryRequirements)
     data = dietary_data.fetch_dietary_req_data()
     assert isinstance(data, list)
+
+def test_resp_measurements():
+    resp_data = patient.resp_measurments()
+    assert isinstance(resp_data, RespiratoryMeasurments)
+    data = resp_data.fetch_resp_measurements_data()
+    assert isinstance(data, dict)
