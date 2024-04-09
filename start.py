@@ -20,3 +20,9 @@ from src.Patients.Patients import Patient
 # dietary_data = patient.dietary_req()
 # data = dietary_data.fetch_dietary_req_data()
 # print(data)
+
+# Fetch Patient's Dietary Requirements Data:
+# patient = Patient(2956, "Data.csv")
+# resp_data = patient.resp_measurments()
+# data = resp_data.fetch_resp_measurements_data()
+# print(data)
