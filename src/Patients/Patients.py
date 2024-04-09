@@ -1,4 +1,5 @@
 from .DietaryRequirements import DietaryRequirements
+from .RespiratoryMeasurments import RespiratoryMeasurments
 
 from src.CSVParser.CSVParser import ParseCSV
 
@@ -55,3 +56,6 @@ class Patient():
     
     def dietary_req(self) -> DietaryRequirements:
         return DietaryRequirements(self.patient_id, self.patient_data)
+    
+    def resp_measurments(self) -> RespiratoryMeasurments:
+        return RespiratoryMeasurments(self.patient_id, self.patient_data)
