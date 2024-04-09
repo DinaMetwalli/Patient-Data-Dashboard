@@ -14,12 +14,12 @@ class CCU():
             raise AuthorizationError("Incorrect Passkey")
         return True
     
-    def import_password(self,password: str) -> None:
+    def import_password(self, password: str) -> bool:
         if not self.auth.validate_import_password(password):
             raise AuthorizationError("Incorrect Import Password")
         return True
 
-    def export_password(self,password: str) -> None:
+    def export_password(self, password: str) -> bool:
         if not self.auth.validate_export_password(password):
             raise AuthorizationError("Incorrect Export Password")
         return True
