@@ -15,3 +15,8 @@ class CCU():
         if not self.auth.validate_import_password(password):
             raise AuthorizationError("Incorrect Import Password")
         return True
+
+    def export_password(self,password: str) -> None:
+        if not self.auth.validate_export_password(password):
+            raise AuthorizationError("Incorrect Export Password")
+        return True
