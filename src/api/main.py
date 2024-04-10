@@ -1,14 +1,17 @@
-from flask import Flask, render_template
+from flask import Flask
+from .routes.reports import reports_bp
 
 def main():
 
-    app: Flask = Flask("Feeding Dashboard")
+    print("Flask API running..!")
+    app = Flask(__name__)
 
     @app.route('/')
     def index():
-        return "<p>Testing</p>"
+        return "<p>Flask App</p>"
+    
+    # Register blueprints for all endpoints
+    app.register_blueprint(reports_bp)
 
     print("Starting the server...")
     app.run(debug=True, port=6002, host="0.0.0.0")
-if __name__ == "__main__":
-    main()
