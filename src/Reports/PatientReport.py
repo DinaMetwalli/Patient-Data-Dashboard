@@ -11,57 +11,21 @@ from reportlab.graphics.shapes import Drawing
 
 import os
 
-from .ReportGenerator import Report
-
 class PatientReport():
-    def __init__(self) -> None:
-        self.report = Report()
-
-    def fetch_patient_data(self, patient_id, csv_file) -> dict:
-        """
-        Fetches specific patient's data from CSV file using Parser
-
-        Parameters:
-            csv_file (str): name of CSV file to be parsed
-            patient_id (int): ID of patient to fetch data of
-
-        Returns:
-            patient_data (dict): a dictionary of the patient data
-                                 maps column to its cell value
-        """
-        data = self.report.parse_csv_data(csv_file)
-        self.averages = self.report.caculate_average_data()
-
-        filtered_data = data[data["encounterId"] == patient_id]
+    def __init__(self, patient_data: dict, average_data: dict, patient_id: int) -> None:
+        self.data = patient_data
+        self.averages = average_data
+        self.patient_id = patient_id
         
-        patient_data = {}
-
-        if not filtered_data.empty:
-            for column in filtered_data.columns:
-                if (column != "encounterId") and (column != "referral"):
-                    patient_data[column] = [filtered_data[column].iloc[0]]
-
-            for value in patient_data:
-                if patient_data[value][0] != None:
-                    patient_data[value][0] = round(patient_data[value][0], 2)
-            
-            return patient_data
-        else:
-            raise Exception(f"No matching records found for patient {patient_id}.")
-        
-    def generate_patient_data_report(self, patient_id, csv_file, export_file) -> None:
+    def generate_patient_report(self, export_file: str) -> None:
         """
         Generates report for specific patient's analytics
 
         Parameters:
-            csv_file (str): name of CSV file to be parsed
             export_file (str): desired name of export PDF file
-            patient_id (int): ID of patient to fetch data of
         """
         desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
         pdf_file = os.path.join(desktop_path, export_file)
-
-        patient_data = self.fetch_patient_data(patient_id, csv_file)
 
         doc = SimpleDocTemplate(pdf_file, pagesize=letter)
 
@@ -69,24 +33,24 @@ class PatientReport():
 
         respiratory_data = [["Patient ID", "FIO2", "FIO2 Ratio", "O2 Flow Rate",
                             "Respiratory Rate", "SIP"],
-                            [patient_id, patient_data['fio2'][0],patient_data['fio2_ratio'][0],
-                            patient_data['oxygen_flow_rate'][0], patient_data['resp_rate'][0],
-                            patient_data['sip'][0]]]
+                            [self.patient_id, self.data['fio2'][0],self.data['fio2_ratio'][0],
+                            self.data['oxygen_flow_rate'][0], self.data['resp_rate'][0],
+                            self.data['sip'][0]]]
 
         mechanical_vent_data = [["Patient ID", "End Tidal\nCO2", "PEEP",
                                 "PIP", "Tidal Vol.", "Tidal Vol.\nActual",
                                 "Tidal Vol.\nKg", "Tidal Vol.\nSpon.", "INSP Time"],
-                                [patient_id, patient_data['end_tidal_co2'][0],
-                                patient_data['peep'][0], patient_data['pip'][0],
-                                patient_data['tidal_vol'][0],
-                                patient_data['tidal_vol_actual'][0],
-                                patient_data['tidal_vol_kg'][0],
-                                patient_data['tidal_vol_spon'][0],
-                                patient_data['insp_time'][0]]]
+                                [self.patient_id, self.data['end_tidal_co2'][0],
+                                self.data['peep'][0], self.data['pip'][0],
+                                self.data['tidal_vol'][0],
+                                self.data['tidal_vol_actual'][0],
+                                self.data['tidal_vol_kg'][0],
+                                self.data['tidal_vol_spon'][0],
+                                self.data['insp_time'][0]]]
         
         dietary_req_data = [["Patient ID", "Feed Vol.", "Feed Vol. ADM", "BMI"],
-                            [patient_id, patient_data['feed_vol'][0],
-                            patient_data['feed_vol_adm'][0], patient_data['bmi'][0]]]
+                            [self.patient_id, self.data['feed_vol'][0],
+                            self.data['feed_vol_adm'][0], self.data['bmi'][0]]]
         
         table_style = TableStyle([('BACKGROUND', (0, 0), (-1, 0), colors.darkcyan),
                                 ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
@@ -106,8 +70,8 @@ class PatientReport():
 
         chart = Drawing(100, 150)
 
-        data = [(patient_data['end_tidal_co2'][0], patient_data['oxygen_flow_rate'][0],
-                patient_data['resp_rate'][0], patient_data['bmi'][0]),
+        data = [(self.data['end_tidal_co2'][0], self.data['oxygen_flow_rate'][0],
+                self.data['resp_rate'][0], self.data['bmi'][0]),
                 (self.averages['end_tidal_co2'], self.averages['oxygen_flow_rate'],
                 self.averages['resp_rate'], self.averages['bmi'])]
 
@@ -152,10 +116,10 @@ class PatientReport():
         report_content = []
         bold_style = ParagraphStyle(name='BoldStyle', fontName='Helvetica-Bold')
         
-        report_content.append(Paragraph(f"Patient {patient_id} Data Analytics - Report", styles['Title']))
+        report_content.append(Paragraph(f"Patient {self.patient_id} Data Analytics - Report", styles['Title']))
         report_content.append(Spacer(1, 50))
 
-        report_content.append(Paragraph(f"This Patient's Encounter ID is {patient_id}.\n"))
+        report_content.append(Paragraph(f"This Patient's Encounter ID is {self.patient_id}.\n"))
         report_content.append(Spacer(1, 12))
 
         report_content.append(Paragraph("Patient's Mechanical Ventilation", bold_style))

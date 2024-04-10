@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Fetch processed data from the Flask API endpoint
-            const response = await fetch('http://localhost:6002/calculate/data', {
+            const response = await fetch('http://localhost:6002/calculate-data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Response:', data);
 
             // Extract the result from the response data
-            const { result } = data.data;
+            const result = data.data.result;
 
             // Display the result in the HTML
             resultElement.textContent = `Result: ${result}`;
