@@ -25,10 +25,13 @@ class CCU():
         return True
     
     def csv_parser(self) -> ParseCSV:
+        """access CSV Parser methods"""
         return ParseCSV()
     
-    def patients(self) -> Patient:
-        return Patient
+    def patients(self, csv_file, patient_id: int = None) -> Patient:
+        """access Patient methods"""
+        return Patient(csv_file, patient_id)
     
     def reports(self) -> Report:
-        return Report
+        """access Report methods"""
+        return Report()
