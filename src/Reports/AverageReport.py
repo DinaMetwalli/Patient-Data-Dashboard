@@ -8,27 +8,21 @@ from reportlab.graphics.charts.barcharts import VerticalBarChart
 from reportlab.graphics.charts.textlabels import Label
 from reportlab.graphics.shapes import Drawing, String
 
-from .ReportGenerator import Report
-
 import os
 
 class AverageReport():
-        def __init__(self) -> None:
-            self.report = Report()
+        def __init__(self, avg_data: dict) -> None:
+              self.averages = avg_data
 
-        def generate_average_data_report(self, csv_file, export_file) -> None:
+        def generate_report(self, export_file: str) -> None:
             """
             Generates report for overall average patient data
 
             Parameters:
-                csv_file (str): name of CSV file to be parsed
                 export_file (str): desired name of export PDF file
             """
             desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
             pdf_file = os.path.join(desktop_path, export_file)
-
-            data = self.report.parse_csv_data(csv_file)
-            averages = self.report.caculate_average_data()
 
             doc = SimpleDocTemplate(pdf_file, pagesize=letter)
             styles = getSampleStyleSheet()
@@ -38,17 +32,17 @@ class AverageReport():
             m_chart = Drawing(600, 200)
             d_chart = Drawing(600, 200)
 
-            respiratory_measurments = [(averages['fio2'], averages['fio2_ratio'],
-                                        averages['oxygen_flow_rate'], averages['resp_rate'],
-                                        averages['sip'])]
+            respiratory_measurments = [(self.averages['fio2'], self.averages['fio2_ratio'],
+                                        self.averages['oxygen_flow_rate'], self.averages['resp_rate'],
+                                        self.averages['sip'])]
             
-            mechanical_ventilation = [(averages['end_tidal_co2'], averages['peep'],
-                                    averages['pip'], averages['tidal_vol'],
-                                    averages['tidal_vol_actual'], averages['tidal_vol_kg'],
-                                    averages['tidal_vol_spon'], averages['insp_time'])]
+            mechanical_ventilation = [(self.averages['end_tidal_co2'], self.averages['peep'],
+                                    self.averages['pip'], self.averages['tidal_vol'],
+                                    self.averages['tidal_vol_actual'], self.averages['tidal_vol_kg'],
+                                    self.averages['tidal_vol_spon'], self.averages['insp_time'])]
             
-            dietary_requirements = [(averages['feed_vol'], averages['feed_vol_adm'],
-                                    averages['bmi'])]
+            dietary_requirements = [(self.averages['feed_vol'], self.averages['feed_vol_adm'],
+                                    self.averages['bmi'])]
 
             # Create bar charts for measurements
             bc = VerticalBarChart()
@@ -94,11 +88,11 @@ class AverageReport():
 
             values = Label()
             values.setOrigin(440, 80)
-            values.setText(f"FIO2: {averages['fio2']}\n\n"
-                            f"FIO2 Ratio: {averages['fio2_ratio']}\n\n"
-                            f"Oxygen Flow Rate: {averages['oxygen_flow_rate']}\n\n"
-                            f"Respiratory Rate: {averages['resp_rate']}\n\n"
-                            f"SIP: {averages['sip']}")
+            values.setText(f"FIO2: {self.averages['fio2']}\n\n"
+                            f"FIO2 Ratio: {self.averages['fio2_ratio']}\n\n"
+                            f"Oxygen Flow Rate: {self.averages['oxygen_flow_rate']}\n\n"
+                            f"Respiratory Rate: {self.averages['resp_rate']}\n\n"
+                            f"SIP: {self.averages['sip']}")
             values.fontName = "Helvetica"
             values.fontSize = 9
 
@@ -111,14 +105,14 @@ class AverageReport():
 
             values = Label()
             values.setOrigin(450, 80)
-            values.setText(f"End Tidal CO2: {averages['end_tidal_co2']}\n\n"
-                            f"Peep: {averages['peep']}\n\n"
-                            f"PIP: {averages['pip']}\n\n"
-                            f"Tidal Vol.: {averages['tidal_vol']}\n\n"
-                            f"Tidal Vol. Actual: {averages['tidal_vol_actual']}\n\n"
-                            f"Tidal Vol. KG: {averages['tidal_vol_kg']}\n\n"
-                            f"Tidal Vol. Spon.: {averages['tidal_vol_spon']}\n\n"
-                            f"INSP Time: {averages['insp_time']}\n\n")
+            values.setText(f"End Tidal CO2: {self.averages['end_tidal_co2']}\n\n"
+                            f"Peep: {self.averages['peep']}\n\n"
+                            f"PIP: {self.averages['pip']}\n\n"
+                            f"Tidal Vol.: {self.averages['tidal_vol']}\n\n"
+                            f"Tidal Vol. Actual: {self.averages['tidal_vol_actual']}\n\n"
+                            f"Tidal Vol. KG: {self.averages['tidal_vol_kg']}\n\n"
+                            f"Tidal Vol. Spon.: {self.averages['tidal_vol_spon']}\n\n"
+                            f"INSP Time: {self.averages['insp_time']}\n\n")
             values.fontName = "Helvetica"
             values.fontSize = 9
 
@@ -130,9 +124,9 @@ class AverageReport():
 
             values = Label()
             values.setOrigin(440, 80)
-            values.setText(f"Feed Vol.: {averages['feed_vol']}\n\n"
-                            f"Feed Vol. ADM: {averages['feed_vol_adm']}\n\n"
-                            f"Body Mass Index: {averages['bmi']}\n\n")
+            values.setText(f"Feed Vol.: {self.averages['feed_vol']}\n\n"
+                            f"Feed Vol. ADM: {self.averages['feed_vol_adm']}\n\n"
+                            f"Body Mass Index: {self.averages['bmi']}\n\n")
             values.fontName = "Helvetica"
             values.fontSize = 9
 

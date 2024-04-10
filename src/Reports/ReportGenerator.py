@@ -1,47 +1,65 @@
 from src.CSVParser.CSVParser import ParseCSV
+from ..Patients.Patients import Patient
+from .AverageReport import AverageReport
+from .PatientReport import PatientReport
+
 import pandas as pd
 
 class Report():
     def __init__(self) -> None:
         self.parser = ParseCSV()
     
-    def parse_csv_data(self, csv_file) -> pd.DataFrame:
+    def fetch_average_data(self, csv_path: str) -> dict:
         """
-        Uses Parser to parse provided CSV file.
+        Fetches average data of all patients
 
         Parameters:
-            csv_file (str): name of CSV file to be parsed
+            csv_path (str): CSV file to fetch data from
 
         Returns:
-            self.data (DataFrame): parsed data
+            (dict): a dictionary of all patients averages
         """
-        self.data = self.parser.import_csv(csv_file)
-
-        return self.data
-
-    def caculate_average_data(self) -> dict:
+        patient = Patient(csv_path)
+        return patient.calculate_average_data()
+    
+    def fetch_patient_data(self, csv_path: str, patient_id: int) -> dict:
         """
-        Calculates overall average of patient data
+        Fetches data of specific patient
+
+        Parameters:
+            csv_path (str): CSV file to fetch data from
+            patient_id (int): the patient's encounter ID
 
         Returns:
-            averages (dict): a dictionary of calculated averages
-                             maps the value to its total and count
+            (dict): a dictionary of all patients averages
         """
-        measurements = {}
-        for column in self.data.columns:
-            if (column != "encounterId") and (column != "referral"):
-                measurements[column] = {"total": 0, "count": 0}
+        patient = Patient(csv_path)
+        return patient.fetch_patient_data(patient_id)
+    
+    def average(self, csv_path: str) -> AverageReport:
+        """
+        Accesses Average Report methods
 
-        for index, row in self.data.iterrows():
-            for variable, data in measurements.items():
-                value = row[variable]
-                if value is not None:
-                    data["total"] += value
-                    data["count"] += 1
+        Parameters:
+            csv_path (str): CSV file to fetch data from
 
-        # Calculate averages
-        averages = {variable: data["total"] / data["count"] if data["count"] != 0 else 0 for variable, data in measurements.items()}
-        for data in averages:
-            averages[data] = round(averages[data], 2)
+        Returns:
+            (object): an instance of AverageReport
+        """
+        average_data = self.fetch_average_data(csv_path)
+        return AverageReport(average_data)
+    
+    def patient(self, patient_id: int, csv_path: str) -> PatientReport:
+        """
+        Accesses Patient Report methods
 
-        return averages
+        Parameters:
+            csv_path (str): CSV file to fetch data from
+            patient_id (int): the patient's encounter ID
+
+        Returns:
+            (object): an instance of PatientReport
+        """
+        patient_data = self.fetch_patient_data(csv_path, patient_id)
+        average_data = self.fetch_average_data(csv_path)
+        return PatientReport(patient_data, average_data, patient_id)
