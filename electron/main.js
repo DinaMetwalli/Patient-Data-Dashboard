@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron/main');
+const { app, BrowserWindow } = require('electron');
 const node_path = require('node:path');
 const path = require('path');
 
@@ -8,12 +8,15 @@ function createWindow() {
         height: 600,
         webPreferences: {
             nodeIntegration: true,
-            preload: node_path.join(__dirname, 'preload.js')
+            preload: node_path.join(__dirname, 'preload.js'),
+            webSecurity: false
         }
     });
 
     win.setMenuBarVisibility(false);
+
     win.loadFile(path.join(__dirname, 'index.html'));
+
     win.on('closed', function () {
         app.quit();
     });
