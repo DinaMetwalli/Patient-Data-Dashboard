@@ -1,4 +1,4 @@
-from example.src.api.main import main
+from src.api.main import main
 from src.Reports.ReportGenerator import Report
 # from src.Reports.PatientReport import PatientReport
 from src.Reports.AverageReport import AverageReport
