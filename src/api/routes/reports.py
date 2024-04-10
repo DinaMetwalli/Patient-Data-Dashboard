@@ -22,3 +22,19 @@ def patient_report():
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"success": False, "message": str(e)})
+    
+@reports_bp.route("/average-report", methods=["POST"])
+def average_report():
+    try:
+        received_data = request.json
+
+        csv_path = received_data.get('csv_path')
+        export_name = received_data.get('export_name')
+
+        report = ccu.reports()
+        avg_report = report.average(csv_path)
+        avg_report.generate_report(export_name)
+
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)})
