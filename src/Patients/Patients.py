@@ -71,6 +71,35 @@ class Patient():
             return self.patient_data
         else:
             raise Exception(f"No matching records found for patient {self.patient_id}.")
+        
+    def calculate_average_data(self) -> dict:
+        """
+        Calculates overall average of patient data
+
+        Returns:
+            averages (dict): a dictionary of calculated averages
+                             maps the value to its total and count
+        """
+        patient_data = self.parse_csv_data()
+
+        measurements = {}
+        for column in patient_data.columns:
+            if (column != "encounterId") and (column != "referral"):
+                measurements[column] = {"total": 0, "count": 0}
+
+        for index, row in patient_data.iterrows():
+            for variable, data in measurements.items():
+                value = row[variable]
+                if value is not None:
+                    data["total"] += value
+                    data["count"] += 1
+
+        # Calculate averages of all patient data
+        averages = {variable: data["total"] / data["count"] if data["count"] != 0 else 0 for variable, data in measurements.items()}
+        for data in averages:
+            averages[data] = round(averages[data], 2)
+
+        return averages
     
     def get_referral_status(self) -> bool:
         """Get patient's referral status"""
