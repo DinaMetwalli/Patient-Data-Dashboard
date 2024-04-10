@@ -12,19 +12,17 @@ from reportlab.graphics.shapes import Drawing
 import os
 
 class PatientReport():
-    def __init__(self, patient_data, average_data, patient_id) -> None:
+    def __init__(self, patient_data: dict, average_data: dict, patient_id: int) -> None:
         self.data = patient_data
         self.averages = average_data
         self.patient_id = patient_id
         
-    def generate_patient_report(self, export_file) -> None:
+    def generate_patient_report(self, export_file: str) -> None:
         """
         Generates report for specific patient's analytics
 
         Parameters:
-            csv_file (str): name of CSV file to be parsed
             export_file (str): desired name of export PDF file
-            patient_id (int): ID of patient to fetch data of
         """
         desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
         pdf_file = os.path.join(desktop_path, export_file)

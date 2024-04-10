@@ -14,12 +14,11 @@ class AverageReport():
         def __init__(self, avg_data: dict) -> None:
               self.averages = avg_data
 
-        def generate_report(self, export_file) -> None:
+        def generate_report(self, export_file: str) -> None:
             """
             Generates report for overall average patient data
 
             Parameters:
-                csv_file (str): name of CSV file to be parsed
                 export_file (str): desired name of export PDF file
             """
             desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
