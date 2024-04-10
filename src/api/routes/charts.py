@@ -1,19 +1,13 @@
-from flask import Flask, render_template, jsonify
-from CSVParser import ParseCSV  # Assuming ParseCSV is correctly defined
-
-app = Flask(__name__)
+from flask import Blueprint, jsonify, request
+from src.CSVParser.CSVParser import ParseCSV
+charts_bp = Blueprint('charts', __name__)
 parser = ParseCSV()
-
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-@app.route("/import-csv", methods=["POST"])
-def import_csv():
+@charts_bp.route("/display_charts", methods=["POST"])
+def display_charts():
     try:
         import_name = "csvfile.csv"  
         parser.import_csv(import_name)
-        data = { #The prob  
+        data = {
             "encounterId": parser.data["encounterId"].tolist(),
             "end_tidal_co2": parser.data["end_tidal_co2"].tolist(),
             "feed_vol": parser.data["feed_vol"].tolist(),
@@ -36,6 +30,3 @@ def import_csv():
         return jsonify({"success": True, "data": data})
     except Exception as e:
         return jsonify({"success": False, "message": str(e)})
-
-if __name__ == "__main__":
-    app.run(debug=True, port=6002, host="0.0.0.0")

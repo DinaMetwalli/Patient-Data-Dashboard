@@ -1,10 +1,10 @@
-from example.src.main import main
+from src.api.main import main
 from src.Reports.ReportGenerator import Report
 from src.Reports.PatientReport import PatientReport
 from src.Reports.AverageReport import AverageReport
 
 # Start server:
-# main()
+main()
 
 # # Generate average data report:
 # instance = AverageReport()

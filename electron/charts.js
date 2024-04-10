@@ -183,7 +183,7 @@ function buildDietaryRequirementsGraph(averages) {
 
 async function importCSV() {
     try {
-        const response = await fetch('http://localhost:6002/import-csv', {
+        const response = await fetch('http://localhost:6002/display_charts', {
             method: 'POST'
         });
 

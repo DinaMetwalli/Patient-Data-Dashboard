@@ -1,9 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import Blueprint, jsonify, request
 import os
+import_bp = Blueprint('importfile', __name__)
 
-app = Flask(__name__)
-
-@app.route('/upload', methods=['POST'])
+@import_bp.route('/upload', methods=['POST'])
 def upload_file():
     file_path = request.json.get('filePath')
 
@@ -14,6 +13,3 @@ def upload_file():
         return jsonify({'success': True, 'message': 'File path received and file exists'}), 200
     else:
         return jsonify({'success': False, 'message': 'File does not exist at the provided path'}), 400
-
-if __name__ == '__main__':
-    app.run(debug=True, port=6002, host="0.0.0.0")
