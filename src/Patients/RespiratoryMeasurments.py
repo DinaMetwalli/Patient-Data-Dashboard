@@ -7,17 +7,15 @@ class RespiratoryMeasurments():
 
     def fetch_resp_measurements_data(self) -> dict:
         """
-        Fetches specific patient's data from CSV file using Parser
+        Fetches specific patient's respiratory data from CSV file using Parser
 
         Returns:
-            respiratory_data (dict): a dictionary containing the respiratory data of the patient
+            respiratory_data (dict): a dictionary containing the data of the patient
         """
-    
         respiratory_data = {"patient_id": self.patient_id,
                             "fio2": self.patient_data['fio2'][0],
                             "fio2_ratio": self.patient_data['fio2_ratio'][0],
                             "oxygen_flow_rate": self.patient_data['oxygen_flow_rate'][0],
                             "resp_rate": self.patient_data['resp_rate'][0],
                             "sip": self.patient_data['sip'][0]}
-        
         return respiratory_data
