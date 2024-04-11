@@ -106,7 +106,7 @@ class Patient():
         # Note: if ML algorithm saves output to CSV file, this function is correct,
         # as a patient's instance could be created with the path of the resulted CSV,
         # and this will function the same.
-        return self.referral
+        return bool(self.referral)
     
     def dietary_req(self) -> DietaryRequirements:
         """Get patient's dietary requirement data"""
