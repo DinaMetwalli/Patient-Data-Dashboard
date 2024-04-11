@@ -104,3 +104,5 @@ class MLAlgorithm():
         self.data.to_csv("predictions.csv", index=False)
 
         print("Predictions saved to predictions.csv file.")
+
+        return self.data
