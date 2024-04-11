@@ -222,7 +222,7 @@ button[type="submit"]:hover {
     text-align: center;
 }
 
-#upload-button {
+#upload-button, #export-button {
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
@@ -231,6 +231,44 @@ button[type="submit"]:hover {
     cursor: pointer;
 }
 
-#upload-button:hover {
+#upload-button:hover, #export-button:hover {
+    background-color: #0056b3;
+}
+
+.window-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+form {
+    text-align: center;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button[type="submit"]:hover {
     background-color: #0056b3;
 }

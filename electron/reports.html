@@ -3,30 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analyze Patient Data</title>
+    <title>Medical Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <div class="sidebar">
+    <div class="sidebar">
         <a href="index.html">Dashboard</a>
         <a href="pd-view.html">View Patient Data</a>
+        <a href="pd-upload.html">Upload Patient Data</a>
         <a href="pd-analysis.html">Analyze Patient Data</a>
         <a href="reports.html">Reports</a>
         <a href="about.html">About</a>
         <a href="help.html">Help</a>
     </div>
     <div class="container">
-        <div class="title-container">
-            <h1>Patient Data Analysis</h1>
-            <p>This page allows you to analyze patient data.</p>
-        </div>
-        <div class="upload-content">
-            <h2>Upload Patient Data</h2>
-            <button id="upload-button">Upload Data</button>
-            <button id="export-button">Export Data</button>
+        <div class="content">
+            <h1>Reports</h1>
+            <div class="button-container">
+                <button id="generate-patient-report">Generate Patient Report</button>
+                <button id="generate-average-report">Generate Average Data Report</button>
+            </div>
         </div>
     </div>
-
-<script src="script.js"></script>
 </body>
 </html>

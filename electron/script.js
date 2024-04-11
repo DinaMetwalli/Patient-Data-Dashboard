@@ -1,3 +1,4 @@
+/* Charts */
 document.addEventListener('DOMContentLoaded', function() {
     var data1 = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -108,4 +109,16 @@ document.addEventListener('DOMContentLoaded', function() {
     var myChart2 = new Chart(ctx2, config2);
     var myChart3 = new Chart(ctx3, config3);
     var myChart4 = new Chart(ctx4, config4);
+});
+
+/* inactive export button */
+const uploadDataButton = document.getElementById('upload-data-button');
+const exportDataButton = document.getElementById('export-data-button');
+
+uploadDataButton.addEventListener('click', function() {
+    // Simulate data upload process
+    setTimeout(function() {
+        // Enable export data button after upload
+        exportDataButton.disabled = false;
+    }, 2000); // Change to your actual upload process time
 });
