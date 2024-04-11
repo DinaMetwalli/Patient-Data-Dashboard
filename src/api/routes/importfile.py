@@ -1,10 +1,11 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, session
 import os
 import_bp = Blueprint('importfile', __name__)
 
 @import_bp.route('/upload', methods=['POST'])
 def upload_file():
     file_path = request.json.get('filePath')
+    session['csv_file'] = file_path
 
     if not file_path:
         return jsonify({'success': False, 'message': 'No file path provided'}), 400

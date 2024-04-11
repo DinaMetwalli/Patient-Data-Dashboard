@@ -1,12 +1,16 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, session
 from src.CSVParser.CSVParser import ParseCSV
+
 charts_bp = Blueprint('charts', __name__)
+
 parser = ParseCSV()
+
 @charts_bp.route("/display_charts", methods=["POST"])
 def display_charts():
     try:
-        import_name = "csvfile.csv"  
+        import_name = session.get('csv_file')
         parser.import_csv(import_name)
+        
         data = {
             "encounterId": parser.data["encounterId"].tolist(),
             "end_tidal_co2": parser.data["end_tidal_co2"].tolist(),
