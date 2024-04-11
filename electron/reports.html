@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+</head>
+
+<body>
+    <h1>Hello World!</h1>
+    <div>
+        <label for="csv">CSV File Path:</label>
+        <input type="text" id="file_path" name="csv">
+    </div>
+    <div>
+        <label for="pdf">PDF Export Name:</label>
+        <input type="text" id="export_name" name="pdf">
+    </div>
+    <div>
+        <label for="p_id">Patient ID:</label>
+        <input type="number" id="patient_id" name="p_id">
+    </div>
+
+    <button id="patient_report">Generate Patient Report</button>
+    <script src="report-renderer.js"></script>
+</body>
+
+</html>

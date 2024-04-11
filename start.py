@@ -1,6 +1,5 @@
 from src.api.main import main
 from src.Reports.ReportGenerator import Report
-# from src.Reports.PatientReport import PatientReport
 from src.Reports.AverageReport import AverageReport
 from src.Patients.Patients import Patient
 from src.ccu.CCU import CCU

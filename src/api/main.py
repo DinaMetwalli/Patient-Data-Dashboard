@@ -1,9 +1,9 @@
-from flask import Flask
-from flask import  session
+from flask import Flask, session
+from .routes.reports import reports_bp
+from .routes.patient import patients_bp
 from .routes.importfile import import_bp
 from .routes.charts import charts_bp
 from .config import config_session
-
 
 def main():
 
@@ -17,6 +17,9 @@ def main():
         return "<p>Flask App</p>"
     
     # Register blueprints for all endpoints
+
+    app.register_blueprint(reports_bp)
+    app.register_blueprint(patients_bp)
     app.register_blueprint(import_bp)
     app.register_blueprint(charts_bp)
 
