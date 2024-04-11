@@ -13,9 +13,9 @@ from sklearn.model_selection import GridSearchCV
 class MLAlgorithm():
     def __init__(self):
         pass
-    def algorithm(self):
+    def algorithm(self, csv_path: str):
         # Load the CSV file
-        self.data = pd.read_csv("Feeding Dashboard data.csv")
+        self.data = pd.read_csv(csv_path)
 
         # Define features and target variable
         self.features = ['end_tidal_co2', 'feed_vol', 'oxygen_flow_rate', 'resp_rate', 'bmi']
