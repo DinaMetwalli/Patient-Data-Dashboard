@@ -99,7 +99,7 @@ class MLAlgorithm():
         #     'SVM_Prediction': svm_predictions_all})
 
 
-        self.data['referral'] = referrals
+        self.data['referral'] = svm_predictions_all
         # Save the predictions to a CSV file
         self.data.to_csv("predictions.csv", index=False)
 
