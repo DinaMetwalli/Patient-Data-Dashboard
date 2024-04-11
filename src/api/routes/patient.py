@@ -25,3 +25,17 @@ def patient_data():
         return jsonify({"success": True, "data": patient_data})
     except Exception as e:
         return jsonify({"success": False, "message": str(e)})
+    
+@patients_bp.route("/patient-all", methods=["POST"])
+def all_patient_data():
+    try:
+        received_data = request.json
+
+        csv_path = received_data.get('csv_path') # could change/remove according to sessions
+
+        patient = ccu.patients(csv_path)
+        data = patient.fetch_all_patient_data()
+
+        return jsonify({"success": True, "data": data})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)})
