@@ -3,10 +3,15 @@ from src.Patients.Patients import Patient, DietaryRequirements, RespiratoryMeasu
 
 import pandas as pd
 
+import os
+
 def test_create_instance():
     global patient
     patient_id = 2906
-    csv_file = "Data.csv"
+
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+    csv_file = os.path.join(desktop_path, "ExportedData.csv")
+
     patient = Patient(csv_file, patient_id)
     assert isinstance(patient, Patient)
 
