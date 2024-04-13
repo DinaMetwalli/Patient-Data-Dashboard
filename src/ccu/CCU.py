@@ -3,6 +3,7 @@ from ..utils.errors import AuthorizationError
 from ..CSVParser.CSVParser import ParseCSV
 from ..Patients.Patients import Patient
 from ..Reports.ReportGenerator import Report
+from ..analyser.algorithm import MLAlgorithm
 
 class CCU():
     
@@ -35,3 +36,7 @@ class CCU():
     def reports(self) -> Report:
         """access Report methods"""
         return Report()
+    
+    def algorithm(self) -> MLAlgorithm:
+        """access ML algorithm methods"""
+        return MLAlgorithm()

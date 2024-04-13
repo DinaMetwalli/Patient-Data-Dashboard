@@ -10,17 +10,18 @@ fileInput.addEventListener('change', () => {
 
     // Send POST request using fetch API
     fetch('http://127.0.0.1:6002/upload', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ filePath })
-        })
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ filePath })
+    })
         .then(response => response.json())
         .then(data => {
             console.log(data); // Log response from the Flask server
             if (data.success) {
                 alert('CSV file uploaded successfully!');
+                location.reload();
             } else {
                 alert('Error uploading file: ' + data.message);
             }

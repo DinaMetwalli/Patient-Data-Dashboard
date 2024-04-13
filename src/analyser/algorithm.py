@@ -16,7 +16,7 @@ class MLAlgorithm():
     def __init__(self) -> None:
         pass
 
-    def algorithm(self, csv_path: str) -> None:
+    def algorithm(self, csv_path: str) -> pd.DataFrame:
         """
         Runs the machine learning algorithm
 
@@ -83,9 +83,9 @@ class MLAlgorithm():
 
             # Save the best model
 
-        self.extract_result()
+        return self.extract_result()
 
-    def extract_result(self) -> None:
+    def extract_result(self) -> pd.DataFrame:
         """
         Extract referral predictions using SVM and RF
 
@@ -108,6 +108,8 @@ class MLAlgorithm():
         # rf_predictions_all = (rf_probs_all >= threshold).astype(int)
 
         self.data['referral'] = svm_predictions_all
+
+        return self.data
 
     def fetch_analysis_results(self) -> list:
 
