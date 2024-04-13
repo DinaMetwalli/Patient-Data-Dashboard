@@ -1,8 +1,14 @@
-from flask import session
+from os import environ
+import redis
 
-from flask_session import Session
+class Config:
+    """Set Flask configuration vars from .env file."""
 
-def config_session(app):
-    # Configure session to use filesystem (or any other desired configuration)
-    app.config['SESSION_TYPE'] = 'filesystem'
-    Session(app)
+    # General Config
+    SECRET_KEY = environ.get('SECRET_KEY')
+    FLASK_APP = environ.get('FLASK_APP')
+    FLASK_ENV = environ.get('FLASK_ENV')
+
+    # Flask-Session
+    SESSION_TYPE = environ.get('SESSION_TYPE')
+    SESSION_REDIS = redis.from_url(environ.get('SESSION_REDIS'))
