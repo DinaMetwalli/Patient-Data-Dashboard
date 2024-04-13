@@ -25,16 +25,19 @@
         <div>
             <div>
                 <h1>Patient Report</h1>
-                <form id="patient-report-form">
-                    <label for="patient-id">Patient ID:</label>
-                    <input type="text" id="patient-id" name="p_id" required>
-                    <label for="pdf">PDF Export Name:</label>
-                    <input type="text" id="export_name" name="pdf" required>
-                </form>
+                <label for="p_id">Patient ID:</label>
+                <input type="number" id="patient_id" name="p_id">
+                <label for="pdf">PDF Export Name:</label>
+                <input type="text" id="export_patient" name="pdf">
+            </div>
+            <div>
+                <h1>Patient Report</h1>
+                <label for="pdf">PDF Export Name:</label>
+                <input type="text" id="export_average" name="pdf">
             </div>
             <div class="upload-content">
                 <button id="patient_report">Generate Patient Report</button>
-                <button id="generate-average-report">Generate Average Data Report</button>
+                <button id="average_report">Generate Average Data Report</button>
             </div>
         </div>
     </div>
