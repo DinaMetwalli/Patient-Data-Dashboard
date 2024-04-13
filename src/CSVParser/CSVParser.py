@@ -27,7 +27,7 @@ class ParseCSV():
         Returns:
             self.data (DataFrame): parsed data
         """
-        file_path = f"src/CSVParser/{import_name}"
+        file_path = import_name
         
         if os.path.exists(file_path):
             # Load the CSV file

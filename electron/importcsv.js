@@ -9,15 +9,13 @@ fileInput.addEventListener('change', () => {
     const filePath = fileInput.files[0].path;
 
     // Send POST request using fetch API
-    fetch('http://localhost:6002/upload/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ filePath }),
-        mode: 'cors',
-        credentials: 'same-origin'
-    })
+    fetch('http://127.0.0.1:6002/upload', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ filePath })
+        })
         .then(response => response.json())
         .then(data => {
             console.log(data); // Log response from the Flask server

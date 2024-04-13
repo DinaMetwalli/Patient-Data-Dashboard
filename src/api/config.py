@@ -1,14 +1,21 @@
-from os import environ
-import redis
+import os
+import json
+SESSION_FILE = 'session_data.json' 
+def load_session():
+    if os.path.exists(SESSION_FILE):
+        with open(SESSION_FILE, 'r') as f:
+            return json.load(f)
+    return {}
 
-class Config:
-    """Set Flask configuration vars from .env file."""
+def save_session(session_data):
+    with open(SESSION_FILE, 'w') as f:
+        json.dump(session_data, f)
 
-    # General Config
-    SECRET_KEY = environ.get('SECRET_KEY')
-    FLASK_APP = environ.get('FLASK_APP')
-    FLASK_ENV = environ.get('FLASK_ENV')
+def get_session_file_path():
+    session_data = load_session()
+    return session_data.get('csv_file')
 
-    # Flask-Session
-    SESSION_TYPE = environ.get('SESSION_TYPE')
-    SESSION_REDIS = redis.from_url(environ.get('SESSION_REDIS'))
+def set_session_file_path(file_path):
+    session_data = load_session()
+    session_data['csv_file'] = file_path
+    save_session(session_data)
