@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from ..config import *
 
 from src.ccu.CCU import CCU
 
@@ -10,9 +11,9 @@ ccu = CCU()
 def patient_report():
     try:
         received_data = request.json
-
+        csv_path=get_session_file_path()
+        print(csv_path)
         patient_id = received_data.get('patient_id')
-        csv_path = received_data.get('csv_path')
         export_name = received_data.get('export_name')
 
         report = ccu.reports()
@@ -27,8 +28,8 @@ def patient_report():
 def average_report():
     try:
         received_data = request.json
-
-        csv_path = received_data.get('csv_path')
+        csv_path=get_session_file_path()
+        print(csv_path)
         export_name = received_data.get('export_name')
 
         report = ccu.reports()

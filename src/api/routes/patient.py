@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 
 from src.ccu.CCU import CCU
-
+from ..config import *
 patients_bp = Blueprint('patient', __name__)
 
 ccu = CCU()
@@ -10,7 +10,8 @@ ccu = CCU()
 def patient_data():
     try:
         received_data = request.json
-
+        csv_path=get_session_file_path()
+        print(csv_path)
         patient_id = received_data.get('patient_id')
         csv_path = received_data.get('csv_path') # could change/remove according to sessions
 
@@ -29,10 +30,8 @@ def patient_data():
 @patients_bp.route("/patient-all", methods=["POST"])
 def all_patient_data():
     try:
-        received_data = request.json
-
-        csv_path = received_data.get('csv_path') # could change/remove according to sessions
-
+        csv_path=get_session_file_path()
+        print(csv_path)
         patient = ccu.patients(csv_path)
         data = patient.fetch_all_patient_data()
 
@@ -46,7 +45,8 @@ def patient_diet_data():
         received_data = request.json
 
         patient_id = received_data.get('patient_id')
-        csv_path = received_data.get('csv_path') # could change/remove according to sessions
+        csv_path=get_session_file_path()
+        print(csv_path)# could change/remove according to sessions
 
         patient = ccu.patients(csv_path, patient_id)
         dietary_data = patient.dietary_req()
