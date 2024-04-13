@@ -6,6 +6,7 @@ from .routes.patient import patients_bp
 from .routes.importfile import import_bp
 from .routes.charts import charts_bp
 
+
 parser = ParseCSV()
 app = Flask(__name__)
 app.secret_key = 'YourSecretKey'
@@ -18,9 +19,12 @@ def main():
         session_data['example_key'] = 'example_value'
         save_session(session_data)
         return 'Session set'
+    
     app.register_blueprint(reports_bp)
     app.register_blueprint(patients_bp)
     app.register_blueprint(import_bp)
     app.register_blueprint(charts_bp)
+    
     print("Starting the server...")
+    
     app.run(debug=True, port=6002, host="0.0.0.0")
