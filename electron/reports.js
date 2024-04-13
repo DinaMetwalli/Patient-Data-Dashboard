@@ -5,13 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const IDInput = document.getElementById('patient_id');
     const exportInput = document.getElementById('export_name');
 
-    generateButton.addEventListener('click', async() => {
+    generateButton.addEventListener('click', async () => {
 
         const patient_id = parseInt(IDInput.value);
         const export_name = exportInput.value;
 
         try {
-            const response = await fetch('http://localhost:6002/patient-report', {
+            const response = await fetch('http://localhost:6002/patient', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
