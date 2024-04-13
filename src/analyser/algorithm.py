@@ -1,5 +1,3 @@
-# Import necessary libraries
-import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
@@ -10,12 +8,26 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import GridSearchCV
 
+import pandas as pd
+import os
+
+
 class MLAlgorithm():
-    def __init__(self):
+    def __init__(self) -> None:
         pass
-    def algorithm(self, csv_path: str):
+
+    def algorithm(self, csv_path: str) -> None:
+        """
+        Runs the machine learning algorithm
+
+        Parameters:
+            csv_path (str): a string of the CSV file path
+        """
         # Load the CSV file
-        self.data = pd.read_csv(csv_path)
+        if os.path.exists(csv_path):
+            self.data = pd.read_csv(csv_path)
+        else:
+            raise Exception("File not found.")
 
         # Define features and target variable
         self.features = ['end_tidal_co2', 'feed_vol', 'oxygen_flow_rate', 'resp_rate', 'bmi']
@@ -50,7 +62,6 @@ class MLAlgorithm():
             pipelines[clf_name] = Pipeline(steps=[('preprocessor', preprocessor),
                                                   ('classifier', clf)])
 
-
         # Hyperparameters grid for grid search
         param_grids = {
             'SVM': {'classifier__C': [0.1, 1, 10], 'classifier__gamma': [0.1, 1, 10]},
@@ -74,10 +85,13 @@ class MLAlgorithm():
 
         self.extract_result()
 
-    def extract_result(self):
+    def extract_result(self) -> None:
+        """
+        Extract referral predictions using SVM and RF
 
-        # Load the CSV file containing all patient data
-        # all_data = pd.read_csv("Feeding Dashboard data.csv")
+        Returns:
+            self.data (pd.DataFrame): A dataframe of the updated patient referrals predicitons
+        """
 
         # Extract features from the entire dataset
         X_all = self.data[self.features]
@@ -93,16 +107,18 @@ class MLAlgorithm():
         svm_predictions_all = (svm_probs_all >= threshold).astype(int)
         # rf_predictions_all = (rf_probs_all >= threshold).astype(int)
 
-        # Create a DataFrame to store the predictions
-        #predictions_df = pd.DataFrame(
-        #    {'encounterId': self.data['encounterId'],  # Assuming 'encounterId' is the correct column name
-        #     'SVM_Prediction': svm_predictions_all})
-
-
         self.data['referral'] = svm_predictions_all
-        # Save the predictions to a CSV file
-        self.data.to_csv("predictions.csv", index=False)
 
-        print("Predictions saved to predictions.csv file.")
+    def fetch_analysis_results(self) -> list:
 
-        return self.data
+        data = self.data
+
+        analysis_data = []
+
+        for index, row in data.iterrows():
+            patient_data = {}
+            for column in data.columns:
+                patient_data[column] = row[column]
+            analysis_data.append(patient_data)
+
+        return analysis_data
