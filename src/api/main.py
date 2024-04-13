@@ -10,7 +10,7 @@ def main():
     print("Flask API running..!")
     app = Flask(__name__)
 
-    config_session(app) #THIS TO MAIN.py where you connect everything
+    config_session(app)
 
     @app.route('/')
     def index():

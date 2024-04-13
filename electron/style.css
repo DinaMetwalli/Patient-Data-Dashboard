@@ -1,0 +1,252 @@
+body {
+    font-family: Arial, sans-serif;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto auto 1fr;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.sidebar {
+    grid-row: span 3;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px 0px;
+    text-decoration: none;
+    width: 100%;
+}
+
+.sidebar a:hover {
+    background-color: #6e96ef;
+    color: #000000;
+    opacity: 80%;
+}
+
+.container {
+    padding: 20px;
+    grid-gap: 20px;
+    align-items: center;
+}
+
+.title-container {
+    grid-row: 1;
+    grid-column: span 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.patient-category-container {
+    grid-row: 2;
+    grid-column: 1;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.patient-category {
+    flex: 1;
+    background-color: #c0c0c0;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.patient-category:last-child {
+    margin-right: 0;
+}
+
+.patient-category h3 {
+    margin-top: 0;
+}
+
+.charts-container {
+    grid-row: 3;
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.chart {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Styles for patient data */
+.patient-data {
+    margin-top: 20px;
+}
+
+.patient-data table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.patient-data th, .patient-data td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.patient-data th {
+    background-color: #f2f2f2;
+}
+
+.patient-data tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Styles for filter options */
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.radio-buttons {
+    display: flex;
+}
+
+.button-container {
+    display: flex;
+}
+
+.radio-buttons input[type="radio"] {
+    display: none;
+}
+
+.radio-buttons label {
+    padding: 8px 16px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.radio-buttons input[type="radio"]:checked + label {
+    background-color: #007bff;
+    color: white;
+}
+
+.button-container button {
+    margin-left: 5px;
+}
+
+/* Styles for login page */
+.login-container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    grid-row: 1 / 4; /* Span all rows */
+    grid-column: 1 / 3; /* Span all columns */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container h2 {
+    margin-top: 0;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* */
+
+.upload-content {
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.window-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+form {
+    text-align: center;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+}

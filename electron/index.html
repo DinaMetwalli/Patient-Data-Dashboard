@@ -1,18 +1,70 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, and Electron <span id="electron-version"></span>.
-    <a href="importcsv.html"><button>Import Page</button></a>
-    <a href="charts.html"><button>Charts Page</button></a>
-</body>
+    <div class="sidebar">
+        <a href="index.html">Dashboard</a>
+        <a href="pd-view.html">View Patient Data</a>
+        <a href="pd-analysis.html">Analyze Patient Data</a>
+        <a href="reports.html">Reports</a>
+        <a href="about.html">About</a>
+        <a href="help.html">Help</a>
+    </div>
 
+    <div class="container">
+        <div class="title-container">
+            <h1>Medical Dashboard</h1>
+            <button class="auth-button">Upload CSV</button>
+        </div>
+
+        <div class="patient-category-container">
+            <div class="patient-category">
+                <h3>Total Patients</h3>
+                <p>100</p>
+            </div>
+            <div class="patient-category">
+                <h3>Patients Needing Referral</h3>
+                <p>25</p>
+            </div>
+            <div class="patient-category">
+                <h3>Patients Not Needing Referral</h3>
+                <p>60</p>
+            </div>
+            <div class="patient-category">
+                <h3>Patients Referred</h3>
+                <p>15</p>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart">
+                <h2>Chart 1</h2>
+                <canvas id="chart1"></canvas>
+            </div>
+
+            <div class="chart">
+                <h2>Chart 2</h2>
+                <canvas id="chart2"></canvas>
+            </div>
+
+            <div class="chart">
+                <h2>Chart 3</h2>
+                <canvas id="chart3"></canvas>
+            </div>
+
+            <div class="chart">
+                <h2>Chart 4</h2>
+                <canvas id="chart4"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</body>
 </html>
