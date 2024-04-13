@@ -1,3 +1,12 @@
+// Get a reference to the "Upload CSV" button
+const authButton = document.querySelector('.auth-button');
+
+// Add a click event listener to the button
+authButton.addEventListener('click', () => {
+    // Open the authentication page in a new window
+    const authWindow = window.open('authentication.html', '_blank', 'width=400,height=300');
+});
+
 /* Charts */
 document.addEventListener('DOMContentLoaded', function() {
     var data1 = {
@@ -122,3 +131,4 @@ uploadDataButton.addEventListener('click', function() {
         exportDataButton.disabled = false;
     }, 2000); // Change to your actual upload process time
 });
+
