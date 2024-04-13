@@ -17,7 +17,7 @@ function createWindow() {
 
     win.loadFile(path.join(__dirname, 'index.html'));
 
-    win.on('closed', function () {
+    win.on('closed', function() {
         app.quit();
     });
 }

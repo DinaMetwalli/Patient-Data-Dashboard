@@ -5,7 +5,7 @@ from src.Patients.Patients import Patient
 from src.ccu.CCU import CCU
 
 # # Start server:
-# main()
+main()
 
 # # Generate average data report:
 # report = Report()
