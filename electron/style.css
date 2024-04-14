@@ -216,7 +216,7 @@ input[type="password"] {
 
 button[type="submit"] {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: rgb(106, 13, 173);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -224,7 +224,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: rgb(160, 110, 200);
 }
 
 
@@ -236,7 +236,7 @@ button[type="submit"]:hover {
 
 button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: rgb(106, 13, 173);
     color: white;
     border: none;
     border-radius: 5px;
@@ -244,7 +244,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: rgb(160, 110, 200);
 }
 
 .window-container {
@@ -273,7 +273,7 @@ form input[type="text"] {
 
 form button[type="submit"] {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: rgb(106, 13, 173);
     color: white;
     border: none;
     border-radius: 5px;
@@ -281,7 +281,7 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: rgb(160, 110, 200);
 }
 
 #fileInput {
@@ -297,7 +297,7 @@ form button[type="submit"]:hover {
     transform: translate(-50%, -50%);
     z-index: 1000;
     border: 8px solid #f3f3f3;
-    border-top: 8px solid #3498db;
+    border-top: 8px solid #6a0dad;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -332,7 +332,7 @@ form button[type="submit"]:hover {
     background-color: rgba(254, 254, 254, 0);
     /* Transparent background */
     margin: 10% auto;
-    padding: 50px;
+    padding: 200px;
     border: 0px solid #888;
     width: 10%;
     max-width: 20px;
@@ -369,7 +369,7 @@ form button[type="submit"]:hover {
     line-height: 1.4;
     font-weight: bold;
     padding: 30px;
-    background: linear-gradient(rgb(137, 22, 214) 0 0) 0 0/100% 100% content-box padding-box no-repeat;
+    background: linear-gradient(rgb(106, 13, 173) 0 0) 0 0/100% 100% content-box padding-box no-repeat;
     position: absolute;
     top: 50%;
     left: 50%;
