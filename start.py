@@ -8,8 +8,8 @@ from src.ccu.CCU import CCU
 from src.ccu.Authenticator import Authenticator
 import os
 
-# # Start server:
-# main()
+# Start server:
+main()
 
 # # Test authenticator:
 # auth = Authenticator()

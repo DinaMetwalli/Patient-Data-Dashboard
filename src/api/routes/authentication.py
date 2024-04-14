@@ -13,6 +13,7 @@ def auth_entry():
         received_data = request.json
 
         password = received_data.get('entry_password')
+        print(password)
 
         ccu.entry_password(password)
 
@@ -47,13 +48,13 @@ def auth_export():
         return jsonify({"success": False, "message": str(e)})
     
 @auth_bp.route('/setup', methods=['POST'])
-def auth_entry():
+def auth_setup():
     try:
         received_data = request.json
 
-        entry_pass = received_data.get('entry_password')
-        import_pass = received_data.get('import_password')
-        export_pass = received_data.get('export_password')
+        entry_pass = received_data.get('entry_pass')
+        import_pass = received_data.get('import_pass')
+        export_pass = received_data.get('export_pass')
 
         ccu.setup_passwords(entry_pass, import_pass, export_pass)
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup and Authenticate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>Authentication</h1>
+        </div>
+        <div>
+            <h2>Setup Passkeys</h2>
+            <label for="entry">Entry Passkey:</label>
+            <input type="text" id="entry-pass" name="entry" required>
+            <label for="import">Import Passkey:</label>
+            <input type="text" id="import-pass" name="import" required>
+            <label for="export">Export Passkey:</label>
+            <input type="text" id="export-pass" name="export" required>
+            <button id="setup">Setup Passkeys</button>
+            <a href="login.html">Login page</a>
+            <p id=result></p>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>
