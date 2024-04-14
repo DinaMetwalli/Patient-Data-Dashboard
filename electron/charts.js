@@ -59,8 +59,8 @@ function buildPieChart(referralData) {
         labels: ['Referred', 'Not Referred'],
         datasets: [{
             data: [referredCount, notReferredCount],
-            backgroundColor: ['#1a2a6c', '#fdbb2d'], // Deep blues and golden yellow
-            hoverBackgroundColor: ['#1a2a6c', '#fdbb2d']
+            backgroundColor: ['#6a0dad', '#d670f4'], // Unique shades
+            hoverBackgroundColor: ['#520b85', '#be4fd6'] // Darker shades for hover effect
         }]
     };
 
@@ -92,6 +92,9 @@ function buildRespiratoryMeasurementsGraph(averages) {
     const labels = Object.keys(averages);
     const values = Object.values(averages);
 
+    const backgroundColors = ['#6a0dad', '#d670f4', '#7c12b5', '#ea8cf9', '#843cc3']; // Unique shades of purple
+    const borderColors = ['#520b85', '#be4fd6', '#5e118b', '#c66efc', '#6e3baf']; // Darker shades for borders
+
     const ctx = document.getElementById('respiratoryMeasurementsChart').getContext('2d');
     const respiratoryMeasurementsChart = new Chart(ctx, {
         type: 'bar',
@@ -100,12 +103,8 @@ function buildRespiratoryMeasurementsGraph(averages) {
             datasets: [{
                 label: 'Respiratory Measurements Average',
                 data: values,
-                backgroundColor: [
-                    '#1a2a6c', '#fdbb2d', '#1a2a6c', '#fdbb2d', '#1a2a6c' // Alternating deep blues and golden yellow
-                ],
-                borderColor: [
-                    '#1a2a6c', '#fdbb2d', '#1a2a6c', '#fdbb2d', '#1a2a6c'
-                ],
+                backgroundColor: backgroundColors,
+                borderColor: borderColors,
                 borderWidth: 1
             }]
         },
@@ -123,6 +122,9 @@ function buildMechanicalVentillationGraph(averages) {
     const labels = Object.keys(averages);
     const values = Object.values(averages);
 
+    const backgroundColors = ['#6a0dad', '#d670f4', '#7c12b5', '#ea8cf9', '#843cc3']; // Unique shades of purple
+    const borderColors = ['#520b85', '#be4fd6', '#5e118b', '#c66efc', '#6e3baf']; // Darker shades for borders
+
     const ctx = document.getElementById('mechanicalVentillationChart').getContext('2d');
     const mechanicalVentillationChart = new Chart(ctx, {
         type: 'bar',
@@ -131,12 +133,8 @@ function buildMechanicalVentillationGraph(averages) {
             datasets: [{
                 label: 'Mechanical Ventillation Average',
                 data: values,
-                backgroundColor: [
-                    '#1a2a6c', '#fdbb2d', '#1a2a6c', '#fdbb2d', '#1a2a6c', '#fdbb2d', '#1a2a6c', '#fdbb2d' // Alternating deep blues and golden yellow
-                ],
-                borderColor: [
-                    '#1a2a6c', '#fdbb2d', '#1a2a6c', '#fdbb2d', '#1a2a6c', '#fdbb2d', '#1a2a6c', '#fdbb2d'
-                ],
+                backgroundColor: backgroundColors,
+                borderColor: borderColors,
                 borderWidth: 1
             }]
         },
@@ -154,6 +152,9 @@ function buildDietaryRequirementsGraph(averages) {
     const labels = Object.keys(averages);
     const values = Object.values(averages);
 
+    const backgroundColors = ['#6a0dad', '#d670f4', '#7c12b5', '#ea8cf9', '#843cc3']; // Unique shades of purple
+    const borderColors = ['#520b85', '#be4fd6', '#5e118b', '#c66efc', '#6e3baf']; // Darker shades for borders
+
     const ctx = document.getElementById('dietaryRequirementsChart').getContext('2d');
     const dietaryRequirementsChart = new Chart(ctx, {
         type: 'bar',
@@ -162,12 +163,8 @@ function buildDietaryRequirementsGraph(averages) {
             datasets: [{
                 label: 'Dietary Requirements Average',
                 data: values,
-                backgroundColor: [
-                    '#1a2a6c', '#fdbb2d', '#1a2a6c' // Deep blues and golden yellow
-                ],
-                borderColor: [
-                    '#1a2a6c', '#fdbb2d', '#1a2a6c'
-                ],
+                backgroundColor: backgroundColors,
+                borderColor: borderColors,
                 borderWidth: 1
             }]
         },
@@ -179,11 +176,18 @@ function buildDietaryRequirementsGraph(averages) {
             }
         }
     });
+    hideLoader('pieChart');
+    hideLoader('respiratoryMeasurementsChart');
+    hideLoader('mechanicalVentillationChart');
+    hideLoader('dietaryRequirementsChart');
+
 }
+
+
 let referralDataFromImportCSV = null;
 let referralDataFromGetReferralData = null;
 
-async function importCSV() {
+async function buildCharts() {
     try {
         const response = await fetch('http://localhost:6002/display_charts', {});
 
@@ -205,10 +209,6 @@ async function importCSV() {
 
             buildDietaryRequirementsGraph(calculateDietaryRequirementsAverage(data.data));
             updatePatientData();
-            hideLoader('pieChart');
-            hideLoader('respiratoryMeasurementsChart');
-            hideLoader('mechanicalVentillationChart');
-            hideLoader('dietaryRequirementsChart');
 
         } else {
             console.error("Failed to import CSV:", data.message);
@@ -283,10 +283,12 @@ function hideLoader(chartId) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
+
     showLoader('pieChart');
     showLoader('respiratoryMeasurementsChart');
     showLoader('mechanicalVentillationChart');
     showLoader('dietaryRequirementsChart');
-    importCSV();
+    buildCharts();
     getReferralData();
+
 });
