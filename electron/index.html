@@ -24,6 +24,15 @@
             <input type="file" id="fileInput" accept=".csv">
             <button id="uploadBtn">Upload CSV</button>
         </div>
+        <div id="loadingModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div class="loader-container">
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="patient-category-container">
             <div class="patient-category">
