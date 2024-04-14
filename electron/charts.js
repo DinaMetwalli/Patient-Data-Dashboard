@@ -198,11 +198,18 @@ async function importCSV() {
             countReferrals(referralDataFromImportCSV);
 
             buildPieChart(data.data.referral);
-            buildRespiratoryMeasurementsGraph(calculateRespiratoryMeasurementsAverage(data.data));
-            buildMechanicalVentillationGraph(calculateMechanicalVentillationAverage(data.data));
-            buildDietaryRequirementsGraph(calculateDietaryRequirementsAverage(data.data));
 
+            buildRespiratoryMeasurementsGraph(calculateRespiratoryMeasurementsAverage(data.data));
+
+            buildMechanicalVentillationGraph(calculateMechanicalVentillationAverage(data.data));
+
+            buildDietaryRequirementsGraph(calculateDietaryRequirementsAverage(data.data));
             updatePatientData();
+            hideLoader('pieChart');
+            hideLoader('respiratoryMeasurementsChart');
+            hideLoader('mechanicalVentillationChart');
+            hideLoader('dietaryRequirementsChart');
+
         } else {
             console.error("Failed to import CSV:", data.message);
             showResult(`Failed to import CSV: ${data.message}`);
@@ -222,7 +229,6 @@ async function getReferralData() {
         const data = await response.json();
         if (data.success) {
             referralDataFromGetReferralData = data.data.referral;
-            countReferrals(referralDataFromGetReferralData);
 
             updatePatientData();
         } else {
@@ -242,6 +248,7 @@ function countReferrals(referralData) {
     document.getElementById('patientsNotNeedingReferral').textContent = referralsWithZero.toString();
 }
 
+
 function updatePatientData() {
     const totalPatients = referralDataFromImportCSV.length;
     const referralsDifference = referralDataFromGetReferralData.filter(value => value === 1).length -
@@ -256,7 +263,30 @@ function showResult(result) {
     resultElement.textContent = `Result: ${result}`;
 }
 
+function showLoader(chartId) {
+    const loaderElement = document.getElementById(chartId + 'Loading');
+    if (loaderElement) {
+        loaderElement.style.display = 'block';
+    }
+}
+
+function hideLoader(chartId) {
+    const loaderElement = document.getElementById(chartId + 'Loading');
+    if (loaderElement) {
+        loaderElement.style.display = 'none';
+        console.log(`Loader hidden for ${chartId}`);
+    } else {
+        console.warn(`Loader element not found for ${chartId}`);
+    }
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
+    showLoader('pieChart');
+    showLoader('respiratoryMeasurementsChart');
+    showLoader('mechanicalVentillationChart');
+    showLoader('dietaryRequirementsChart');
     importCSV();
     getReferralData();
 });
