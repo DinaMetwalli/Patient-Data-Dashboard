@@ -1,14 +1,14 @@
 // Get a reference to the "Upload CSV" button
-const authButton = document.querySelector('.auth-button');
+// const authButton = document.querySelector('.auth-button');
 
-// Add a click event listener to the button
-authButton.addEventListener('click', () => {
-    // Open the authentication page in a new window
-    const authWindow = window.open('authentication.html', '_blank', 'width=400,height=300');
-});
+// // Add a click event listener to the button
+// authButton.addEventListener('click', () => {
+//     // Open the authentication page in a new window
+//     const authWindow = window.open('authentication.html', '_blank', 'width=400,height=300');
+// });
 
 /* Charts */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var data1 = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [{
@@ -124,9 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
 const uploadDataButton = document.getElementById('upload-data-button');
 const exportDataButton = document.getElementById('export-data-button');
 
-uploadDataButton.addEventListener('click', function() {
+uploadDataButton.addEventListener('click', function () {
     // Simulate data upload process
-    setTimeout(function() {
+    setTimeout(function () {
         // Enable export data button after upload
         exportDataButton.disabled = false;
     }, 2000); // Change to your actual upload process time

@@ -2,6 +2,7 @@ import csv
 import os
 import pandas as pd
 import numpy as np
+from pathlib import Path
 
 class ParseCSV():
     _instance = None
@@ -41,7 +42,7 @@ class ParseCSV():
         else:
             raise Exception("File not found.")
 
-    def export_csv(self, export_name: str) -> None:
+    def export_csv(self, data: pd.DataFrame, export_name:str = None) -> None:
         """
         Exports the parsed CSV file
 
@@ -49,9 +50,18 @@ class ParseCSV():
             export_name (str): name of CSV file to be exported
         """
         try:
-            if self.data is not None:
+            if data is not None:
                 # Export DataFrame to CSV
-                self.data.to_csv(export_name, index=False)
+                if export_name is not None:
+                    data.to_csv(export_name, index=False)
+                else:
+                    desktop_path = Path.home() / "Desktop"
+                    analysed_data_path = desktop_path / "Analysed Data"
+                    
+                    if not os.path.exists(analysed_data_path):
+                        os.mkdir(analysed_data_path)
+                        
+                    data.to_csv(analysed_data_path / "Analysis_Results.csv", index=False)
 
                 print("CSV file exported successfully.")
             

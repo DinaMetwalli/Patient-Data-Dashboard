@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="sidebar">
         <a href="index.html">Dashboard</a>
@@ -19,52 +21,68 @@
     <div class="container">
         <div class="title-container">
             <h1>Medical Dashboard</h1>
-            <button class="auth-button">Upload CSV</button>
+            <input type="file" id="fileInput" accept=".csv">
+            <button id="uploadBtn">Upload CSV</button>
         </div>
+        <div id="loadingModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div class="loader-container">
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="patient-category-container">
             <div class="patient-category">
                 <h3>Total Patients</h3>
-                <p>100</p>
+                <p id="totalPatients">Loading...</p>
             </div>
             <div class="patient-category">
                 <h3>Patients Needing Referral</h3>
-                <p>25</p>
+                <p id="patientsNeedingReferral">Loading...</p>
             </div>
             <div class="patient-category">
                 <h3>Patients Not Needing Referral</h3>
-                <p>60</p>
+                <p id="patientsNotNeedingReferral">Loading...</p>
             </div>
             <div class="patient-category">
                 <h3>Patients Referred</h3>
-                <p>15</p>
+                <p id="patientsReferred">Loading...</p>
             </div>
         </div>
-
         <div class="charts-container">
             <div class="chart">
-                <h2>Chart 1</h2>
-                <canvas id="chart1"></canvas>
+                <h2 class="chart-title">Percentage of People Referred or Not Referred</h2>
+                <canvas id="pieChart"></canvas>
+                <div id="pieChartLoading" class="loading-indicator"></div>
             </div>
 
             <div class="chart">
-                <h2>Chart 2</h2>
-                <canvas id="chart2"></canvas>
+                <h2 class="chart-title">Respiratory Measurements Average</h2>
+                <canvas id="respiratoryMeasurementsChart"></canvas>
+                <div id="respiratoryMeasurementsChartLoading" class="loading-indicator"></div>
             </div>
 
             <div class="chart">
-                <h2>Chart 3</h2>
-                <canvas id="chart3"></canvas>
+                <h2 class="chart-title">Mechanical Ventillation Average</h2>
+                <canvas id="mechanicalVentillationChart"></canvas>
+                <div id="mechanicalVentillationChartLoading" class="loading-indicator"></div>
             </div>
 
             <div class="chart">
-                <h2>Chart 4</h2>
-                <canvas id="chart4"></canvas>
+                <h2 class="chart-title">Dietary Requirements Average</h2>
+                <canvas id="dietaryRequirementsChart"></canvas>
+                <div id="dietaryRequirementsChartLoading" class="loading-indicator"></div>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
+    <script src="importcsv.js"></script>
+    <script src="charts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 </body>
+
 </html>
