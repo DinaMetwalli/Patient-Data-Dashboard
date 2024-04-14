@@ -42,7 +42,6 @@ body {
     align-items: center;
 }
 
-
 .patient-category-container {
     grid-row: 2;
     grid-column: 1;
@@ -82,7 +81,9 @@ body {
     border-radius: 10px;
 }
 
+
 /* Styles for patient data */
+
 .patient-data {
     margin-top: 20px;
 }
@@ -107,7 +108,9 @@ body {
     background-color: #f9f9f9;
 }
 
+
 /* Styles for filter options */
+
 .filter-container {
     display: flex;
     justify-content: space-between;
@@ -145,7 +148,9 @@ body {
     margin-left: 5px;
 }
 
+
 /* Styles for login page */
+
 .login-container {
     text-align: center;
     padding: 20px;
@@ -197,6 +202,7 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
+
 /* */
 
 .upload-content {
@@ -222,7 +228,6 @@ button:hover {
     align-items: center;
     height: 100vh;
 }
-
 
 form {
     text-align: center;
@@ -257,4 +262,19 @@ form button[type="submit"]:hover {
 #fileInput {
     display: none;
     /* Hide the file input */
+}
+
+.loading-indicator {
+    display: none;
+    /* Initially hide all loading indicators */
+    text-align: center;
+    margin-top: 10px;
+}
+
+.loading-indicator::after {
+    content: "Loading...";
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 14px;
+    color: #333;
 }

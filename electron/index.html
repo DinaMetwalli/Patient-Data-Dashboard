@@ -28,19 +28,19 @@
         <div class="patient-category-container">
             <div class="patient-category">
                 <h3>Total Patients</h3>
-                <p>100</p>
+                <p id="totalPatients">Loading...</p>
             </div>
             <div class="patient-category">
                 <h3>Patients Needing Referral</h3>
-                <p>25</p>
+                <p id="patientsNeedingReferral">Loading...</p>
             </div>
             <div class="patient-category">
                 <h3>Patients Not Needing Referral</h3>
-                <p>60</p>
+                <p id="patientsNotNeedingReferral">Loading...</p>
             </div>
             <div class="patient-category">
                 <h3>Patients Referred</h3>
-                <p>15</p>
+                <p id="patientsReferred">Loading...</p>
             </div>
         </div>
         <div class="charts-container">
@@ -62,8 +62,10 @@
             <div class="chart">
                 <h2 class="chart-title">Dietary Requirements Average</h2>
                 <canvas id="dietaryRequirementsChart"></canvas>
+
             </div>
-            <div id="result"></div> <!-- need to be styled properly -->
+            <div id="result"></div>
+            <!-- need to be styled properly -->
         </div>
     </div>
 

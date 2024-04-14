@@ -180,6 +180,8 @@ function buildDietaryRequirementsGraph(averages) {
         }
     });
 }
+let referralDataFromImportCSV = null;
+let referralDataFromGetReferralData = null;
 
 async function importCSV() {
     try {
@@ -190,14 +192,17 @@ async function importCSV() {
         }
 
         const data = await response.json();
-        console.log("Data received:", data);
 
         if (data.success) {
+            referralDataFromImportCSV = data.data.referral;
+            countReferrals(referralDataFromImportCSV);
+
             buildPieChart(data.data.referral);
             buildRespiratoryMeasurementsGraph(calculateRespiratoryMeasurementsAverage(data.data));
             buildMechanicalVentillationGraph(calculateMechanicalVentillationAverage(data.data));
             buildDietaryRequirementsGraph(calculateDietaryRequirementsAverage(data.data));
-            showResult(`CSV Imported successfully.`);
+
+            updatePatientData();
         } else {
             console.error("Failed to import CSV:", data.message);
             showResult(`Failed to import CSV: ${data.message}`);
@@ -208,12 +213,50 @@ async function importCSV() {
     }
 }
 
+async function getReferralData() {
+    try {
+        const response = await fetch('http://localhost:6002/referal');
+        if (!response.ok) {
+            throw new Error('Failed to fetch referral data');
+        }
+        const data = await response.json();
+        if (data.success) {
+            referralDataFromGetReferralData = data.data.referral;
+            countReferrals(referralDataFromGetReferralData);
+
+            updatePatientData();
+        } else {
+            console.error('Failed to fetch referral data:', data.message);
+        }
+    } catch (error) {
+        console.error('An error occurred while fetching data:', error);
+    }
+}
+
+function countReferrals(referralData) {
+    // Count referrals with value 1 and 0
+    const referralsWithOne = referralData.filter(value => value === 1).length;
+    const referralsWithZero = referralData.filter(value => value === 0).length;
+
+    document.getElementById('patientsNeedingReferral').textContent = referralsWithOne.toString();
+    document.getElementById('patientsNotNeedingReferral').textContent = referralsWithZero.toString();
+}
+
+function updatePatientData() {
+    const totalPatients = referralDataFromImportCSV.length;
+    const referralsDifference = referralDataFromGetReferralData.filter(value => value === 1).length -
+        referralDataFromImportCSV.filter(value => value === 1).length;
+
+    document.getElementById('totalPatients').textContent = totalPatients.toString();
+    document.getElementById('patientsReferred').textContent = referralsDifference.toString();
+}
+
 function showResult(result) {
     const resultElement = document.getElementById("result");
     resultElement.textContent = `Result: ${result}`;
 }
 
-// Call the importCSV function when the page loads
 document.addEventListener("DOMContentLoaded", function() {
     importCSV();
+    getReferralData();
 });

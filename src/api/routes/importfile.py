@@ -11,11 +11,9 @@ import_bp = Blueprint('importfile', __name__)
 def upload_file():
         try:
             file_path = request.json.get('filePath')
-
+            set_session_csv_old(file_path)
             ml = ccu.algorithm()
             analysis_data = ml.algorithm(file_path)
-            #  = ml.fetch_analysis_results()
-
             parser = ccu.csv_parser()
             parser.export_csv(analysis_data)
 
