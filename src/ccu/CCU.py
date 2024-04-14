@@ -9,19 +9,19 @@ class CCU():
     def __init__(self):
         self.auth = Authenticator()
 
-    def entry(self, passkey: str) -> bool:
+    def entry_password(self, passkey: str) -> bool:
         if not self.auth.validate_entry_passkey(passkey):
             raise AuthorizationError("Incorrect Passkey")
         return True
     
     def import_password(self, password: str) -> bool:
-        if not self.auth.validate_import_password(password):
-            raise AuthorizationError("Incorrect Import Password")
+        if not self.auth.validate_import_passkey(password):
+            raise AuthorizationError("Incorrect Import Passkey")
         return True
 
     def export_password(self, password: str) -> bool:
-        if not self.auth.validate_export_password(password):
-            raise AuthorizationError("Incorrect Export Password")
+        if not self.auth.validate_export_passkey(password):
+            raise AuthorizationError("Incorrect Export Passkey")
         return True
     
     def csv_parser(self) -> ParseCSV:
