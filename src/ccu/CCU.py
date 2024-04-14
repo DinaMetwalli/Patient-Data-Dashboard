@@ -9,6 +9,9 @@ class CCU():
     def __init__(self):
         self.auth = Authenticator()
 
+    def setup_passwords(self, entry_pass: str, import_pass: str, export_pass: str) -> None:
+        self.auth.generate_passkeys(entry_pass, import_pass, export_pass)
+    
     def entry_password(self, passkey: str) -> bool:
         if not self.auth.validate_entry_passkey(passkey):
             raise AuthorizationError("Incorrect Passkey")
