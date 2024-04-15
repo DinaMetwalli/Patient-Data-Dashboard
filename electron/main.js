@@ -4,8 +4,8 @@ const path = require('path');
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 900,
         webPreferences: {
             nodeIntegration: true,
             preload: node_path.join(__dirname, 'preload.js'),
@@ -17,7 +17,7 @@ function createWindow() {
 
     win.loadFile(path.join(__dirname, 'index.html'));
 
-    win.on('closed', function () {
+    win.on('closed', function() {
         app.quit();
     });
 }
