@@ -22,28 +22,24 @@
         </div>
 
         <div class="filter-container">
-        <div class="radio-buttons">
-            <input type="radio" id="all" name="filter" value="all" checked>
-            <label for="all">All</label>
+            <div class="radio-buttons">
+                <input type="radio" id="all" name="filter" value="all" checked>
+                <label for="all">All</label>
 
-            <input type="radio" id="do-not-need-referral" name="filter" value="do-not-need-referral">
-            <label for="do-not-need-referral">Do not need referral</label>
+                <input type="radio" id="do-not-need-referral" name="filter" value="do-not-need-referral">
+                <label for="do-not-need-referral">Do not need referral</label>
 
-            <input type="radio" id="need-referral" name="filter" value="need-referral">
-            <label for="need-referral">Need referral</label>
+                <input type="radio" id="need-referral" name="filter" value="need-referral">
+                <label for="need-referral">Need referral</label>
 
-            <input type="radio" id="referred" name="filter" value="referred">
-            <label for="referred">Referred</label>
-        </div>
+                <input type="radio" id="referred" name="filter" value="referred">
+                <label for="referred">Referred</label>
+            </div>
 
-        <div class="button-container">
-            <button id="filter-button">Filter</button>
-            <button class="auth-button" id="export-all-button">Export All</button>
-        </div>
-    </div>
-    </div>
-
-
+            <div class="button-container">
+                <button id="filter-button">Filter</button>
+                <button class="auth-button" id="export-all-button">Export All</button>
+            </div>
         </div>
 
         <div class="patient-data">
@@ -58,7 +54,7 @@
                         <th>HEADER 6</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="patient-list">
                     <!-- Sample data, replace with actual patient data -->
                     <tr>
                         <td>Peter</td>
@@ -66,7 +62,7 @@
                         <td>picked</td>
                         <td>a peck</td>
                         <td>of pickled</td>
-                        <td>peppers </td>
+                        <td>peppers</td>
                     </tr>
                     <tr>
                         <td>a peck</td>
@@ -78,7 +74,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div id="pagination"></div>
         </div>
     </div>
+    <script src="pagination.js"></script>
 </body>
 </html>
