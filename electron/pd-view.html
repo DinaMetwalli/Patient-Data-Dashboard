@@ -45,6 +45,7 @@
             </div>
         </div>
         <button id="filter-button">Filter</button>
+        <button class="auth-button" id="export-all-button">Export All</button>
     </div>
 </div>
 
@@ -67,7 +68,7 @@
                         <th>HEADER 6</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="patient-list">
                     <!-- Sample data, replace with actual patient data -->
                     <tr>
                         <td>Peter</td>
@@ -75,7 +76,7 @@
                         <td>picked</td>
                         <td>a peck</td>
                         <td>of pickled</td>
-                        <td>peppers </td>
+                        <td>peppers</td>
                     </tr>
                     <tr>
                         <td>a peck</td>
@@ -87,8 +88,10 @@
                     </tr>
                 </tbody>
             </table>
+            <div id="pagination"></div>
         </div>
     </div>
+    <script src="pagination.js"></script>
     <script src="authwindow.js"></script>
 </body>
 </html>
