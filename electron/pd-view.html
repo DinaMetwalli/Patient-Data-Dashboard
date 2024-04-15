@@ -36,10 +36,19 @@
             <label for="referred">Referred</label>
         </div>
 
-        <div class="button-container">
-            <button id="filter-button">Filter</button>
-            <button class="auth-button" id="export-all-button">Export All</button>
+        <div class="bmi-container">
+    <div class="button-container">
+        <div class="dropdown">
+            <button class="dropbtn">Filter by BMI</button>
+            <div class="dropdown-content">
+                <input type="text" id="bmi-filter" placeholder="Enter BMI">
+            </div>
         </div>
+        <button id="filter-button">Filter</button>
+    </div>
+</div>
+
+
     </div>
     </div>
 
@@ -80,5 +89,6 @@
             </table>
         </div>
     </div>
+    <script src="authwindow.js"></script>
 </body>
 </html>
