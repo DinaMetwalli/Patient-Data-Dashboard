@@ -35,7 +35,7 @@ def all_patient_data():
         patient = ccu.patients(csv_path)
         data = patient.fetch_all_patient_data()
 
-        return jsonify({"success": True, "data": data})
+        return jsonify({"success": True, "result": data})
     except Exception as e:
         return jsonify({"success": False, "message": str(e)})
 
