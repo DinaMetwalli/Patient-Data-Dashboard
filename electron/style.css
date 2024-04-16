@@ -367,7 +367,7 @@ form button[type="submit"]:hover {
 .loader {
     width: fit-content;
     font-size: 27px;
-    font-family: monospace;
+    font-family: sans-serif;
     line-height: 1.4;
     font-weight: bold;
     --c: no-repeat linear-gradient(#d670f4 0 0);

@@ -1,31 +1,31 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     const itemsPerPage = 50;
     const tableBody = document.getElementById("patient-list");
     const pagination = document.getElementById("pagination");
     const rows = Array.from(tableBody.getElementsByTagName("tr"));
 
     async function displayPatients(pageNumber) {
-    let data;
-    try {
-        const response = await fetch('http://127.0.0.1:6002/patient-all', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        });
+        let data;
+        try {
+            const response = await fetch('http://127.0.0.1:6002/patient-all', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch data');
-        }
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
 
-        data = await response.json();
-        console.log(data); // Log response from the server
+            data = await response.json();
+            console.log(data); // Log response from the server
 
-        if (!data || !data.result) {
-            throw new Error('Response data does not contain the expected structure');
-        }
+            if (!data || !data.result) {
+                throw new Error('Response data does not contain the expected structure');
+            }
 
-        const patients = data.result; // Assuming data is an array of patient objects
+            const patients = data.result; // Assuming data is an array of patient objects
 
 
             // Clear table body
@@ -106,16 +106,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 const link = document.createElement("a");
                 link.href = "#";
                 link.textContent = i;
-                link.onclick = function () {
+                link.onclick = function() {
                     displayPatients(i);
                 };
                 pagination.appendChild(link);
             }
         } catch (error) {
-    console.error('Error:', error);
-    console.log('Response data:', data); // Log response data for further inspection
-    alert('Error fetching patient data');
-}
+            console.error('Error:', error);
+            console.log('Response data:', data); // Log response data for further inspection
+            alert('Please Upload a CSV file first');
+        }
 
     }
 
