@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     inputPasskeysButton.addEventListener('click', async () => {
 
         const entry_password = entryInput.value;
-        // make login lead to index page, then do the thing where setup doesnt show up when config.json isnt empty. dont forget to remove extra stuff from auth.js
         try {
             const response = await fetch('http://localhost:6002/auth-entry', {
                 method: 'POST',
