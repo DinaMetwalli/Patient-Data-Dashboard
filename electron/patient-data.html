@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Data</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .table-container {
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%; 
+            margin-bottom: 20px; 
+        }
+
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="index.html">Dashboard</a>
+        <a href="pd-view.html">View Patient Data</a>
+        <a href="pd-analysis.html">Analyze Patient Data</a>
+        <a href="reports.html">Reports</a>
+        <a href="about.html">About</a>
+        <a href="help.html">Help</a>
+    </div>
+    <div class="container">
+        <div class="title-container">
+            <h1>Reports</h1>
+        </div>
+        <div class="input-container">
+            <label for="patientId">Enter Patient ID:</label>
+            <input type="number" id="patientId" name="patientId">
+            <button id="fetchDataBtn">Fetch Data</button>
+        </div>
+        <div class="table-container">
+            <table id="table1">
+                <caption>Dietary Requirements</caption>
+                <thead>
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>feed_vol</th>
+                        <th>feed_vol_adm</th>
+                        <th>.bmi</th>
+                    </tr>
+                </thead>
+                <tbody id="table1Body"></tbody>
+            </table>
+            <table id="table2">
+                <caption>Respiratory Measurments</caption>
+                <thead>
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>fio2</th>
+                        <th>fio2_ratio</th>
+                        <th>oxygen_flow_rate</th>
+                        <th>.resp_rate</th>
+                        <th>.sip</th>
+                    </tr>
+                </thead>
+                <tbody id="table2Body"></tbody>
+            </table>
+            <table id="table3">
+                <caption>Mechanical Ventilation</caption>
+                <thead>
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>end_tidal_co2</th>
+                        <th>peep</th>
+                        <th>pip</th>
+                        <th>.tidal_vol</th>
+                        <th>.tidal_vol_actual</th>
+                        <th>.tidal_vol_kg</th>
+                        <th>.tidal_vol_spon</th>
+                        <th>insp_time</th>
+                    </tr>
+                </thead>
+                <tbody id="table3Body"></tbody>
+            </table>
+        </div>
+        <div id="loadingModal" style="display: none;">Loading...</div>
+        <script src="pagination-patient-data.js"></script>
+    </div>
+</body>
+</html>
