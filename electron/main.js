@@ -5,8 +5,8 @@ const fs = require('fs');
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 900,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
@@ -34,7 +34,7 @@ function createWindow() {
         win.loadFile(path.join(__dirname, 'login.html'));
     }
 
-    win.on('closed', function () {
+    win.on('closed', function() {
         app.quit();
     });
 }

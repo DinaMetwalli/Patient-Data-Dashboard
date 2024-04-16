@@ -19,3 +19,12 @@ def set_session_file_path(file_path):
     session_data = load_session()
     session_data['csv_file'] = file_path
     save_session(session_data)
+
+def get_session_csv_old():
+    session_data = load_session()
+    return session_data.get('csv_old')
+
+def set_session_csv_old(file_path):
+    session_data = load_session()
+    session_data['csv_old'] = file_path
+    save_session(session_data)

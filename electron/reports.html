@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<!--     <h1>Hello World!</h1>
-    <div>
-        <label for="pdf">PDF Export Name:</label>
-        <input type="text" id="export_name" name="pdf">
-    </div>
-    <div>
-        <label for="p_id">Patient ID:</label>
-        <input type="number" id="patient_id" name="p_id"> -->
     <div class="sidebar">
         <a href="index.html">Dashboard</a>
         <a href="pd-view.html">View Patient Data</a>
@@ -29,12 +23,25 @@
             <p>This page allows you to generate reports based on the uploaded data.</p>
         </div>
         <div>
+            <div>
+                <h1>Patient Report</h1>
+                <label for="p_id">Patient ID:</label>
+                <input type="number" id="patient_id" name="p_id">
+                <label for="pdf">PDF Export Name:</label>
+                <input type="text" id="export_patient" name="pdf">
+            </div>
+            <div>
+                <h1>Patient Report</h1>
+                <label for="pdf">PDF Export Name:</label>
+                <input type="text" id="export_average" name="pdf">
+            </div>
             <div class="upload-content">
-                <button id="generate-patient-report">Generate Patient Report</button>
-                <button id="generate-average-report">Generate Average Data Report</button>
+                <button id="patient_report">Generate Patient Report</button>
+                <button id="average_report">Generate Average Data Report</button>
             </div>
         </div>
-
     </div>
+    <script src="reports.js"></script>
 </body>
+
 </html>
