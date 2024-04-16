@@ -19,7 +19,6 @@
             margin-bottom: 20px; 
         }
 
-
         th, td {
             border: 1px solid #dddddd;
             text-align: left;
@@ -51,48 +50,143 @@
         </div>
         <div class="table-container">
             <table id="table1">
-                <caption>Dietary Requirements</caption>
+                <caption><b>Dietary Requirements</b></caption>
                 <thead>
                     <tr>
                         <th>Patient ID</th>
                         <th>feed_vol</th>
                         <th>feed_vol_adm</th>
-                        <th>.bmi</th>
+                        <th>bmi</th>
                     </tr>
                 </thead>
                 <tbody id="table1Body"></tbody>
             </table>
             <table id="table2">
-                <caption>Respiratory Measurments</caption>
+                <caption><b>Respiratory Measurements</b></caption>
                 <thead>
                     <tr>
                         <th>Patient ID</th>
                         <th>fio2</th>
                         <th>fio2_ratio</th>
                         <th>oxygen_flow_rate</th>
-                        <th>.resp_rate</th>
-                        <th>.sip</th>
+                        <th>resp_rate</th>
+                        <th>sip</th>
                     </tr>
                 </thead>
                 <tbody id="table2Body"></tbody>
             </table>
             <table id="table3">
-                <caption>Mechanical Ventilation</caption>
+                <caption><b>Mechanical Ventilation</b></caption>
                 <thead>
                     <tr>
                         <th>Patient ID</th>
                         <th>end_tidal_co2</th>
                         <th>peep</th>
                         <th>pip</th>
-                        <th>.tidal_vol</th>
-                        <th>.tidal_vol_actual</th>
-                        <th>.tidal_vol_kg</th>
-                        <th>.tidal_vol_spon</th>
+                        <th>tidal_vol</th>
+                        <th>tidal_vol_actual</th>
+                        <th>tidal_vol_kg</th>
+                        <th>tidal_vol_spon</th>
                         <th>insp_time</th>
                     </tr>
                 </thead>
                 <tbody id="table3Body"></tbody>
             </table>
+            <table id="normalValuesTable">
+                <caption><b>Normal Values</b></caption>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Normal Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FiO2</td>
+                        <td>21% up to 100%</td>
+                    </tr>
+                    <tr>
+                        <td>FiO2 ratio</td>
+                        <td>0.21 up to 1</td>
+                    </tr>
+                    <tr>
+                        <td>End tidal CO2</td>
+                        <td>4.0 to 5.7 kPa</td>
+                    </tr>
+                    <tr>
+                        <td>Respiratory Rate</td>
+                        <td>12-20 bpm</td>
+                    </tr>
+                    <tr>
+                        <td>Inspiratory Time</td>
+                        <td>1-1.5 sec</td>
+                    </tr>
+                    <tr>
+                        <td>PEEP</td>
+                        <td>5-20 cm H2O</td>
+                    </tr>
+                    <tr>
+                        <td>Pip</td>
+                        <td>20-40 cm H2O</td>
+                    </tr>
+                    <tr>
+                        <td>Tidal Volume</td>
+                        <td>500-700 mls</td>
+                    </tr>
+                    <tr>
+                        <td>Tidal Volume (per kg)</td>
+                        <td>6-8 ml/kg</td>
+                    </tr>
+                    <tr>
+                        <td>BMI</td>
+                        <td>18.5-25</td>
+                    </tr>
+                    <tr>
+                        <td>feed_vol</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>feed_vol_adm</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>bmi</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>fio2</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>oxygen_flow_rate</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>resp_rate</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>sip</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tidal_vol_actual</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tidal_vol_kg</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tidal_vol_spon</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>insp_time</td>
+                        <td>N/A</td>
+                    </tr>
+                </tbody>
+            </table>            
         </div>
         <div id="loadingModal" style="display: none;">Loading...</div>
         <script src="pagination-patient-data.js"></script>
