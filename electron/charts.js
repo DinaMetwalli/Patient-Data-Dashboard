@@ -282,7 +282,7 @@ function hideLoader(chartId) {
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     showLoader('pieChart');
     showLoader('respiratoryMeasurementsChart');
