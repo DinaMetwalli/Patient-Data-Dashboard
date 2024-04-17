@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     async function displayPatients(pageNumber) {
         let data;
         try {
-            const response = await fetch('http://127.0.0.1:6002/patient-all', {
+            const response = await fetch('http://localhost:6002/patient-all', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -19,31 +19,30 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             data = await response.json();
-            console.log(data); // Log response from the server
+            console.log(data);
 
             if (!data || !data.result) {
                 throw new Error('Response data does not contain the expected structure');
             }
 
-            const patients = data.result; // Assuming data is an array of patient objects
+            const patients = data.result;
 
             updateTable(patients, pageNumber); // Update table with patient data
 
         } catch (error) {
             console.error('Error:', error);
-            console.log('Response data:', data); // Log response data for further inspection
             alert('Error fetching patient data');
         }
     }
 
     async function filterByBMI(bmi) {
         try {
-            const response = await fetch('http://127.0.0.1:6002/filter-by-bmi', {
+            const response = await fetch('http://localhost:6002/filter-by-bmi', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ bmi: bmi })
+                body: JSON.stringify({ bmi })
             });
 
             if (!response.ok) {
@@ -58,14 +57,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    async function filterByReferral(referral) {
+    async function filterByReferral(referral, pageNumber) {
+        console.log("filter function referral stat:", referral)
         try {
             const response = await fetch('http://localhost:6002/filter-by-referral', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ referral: referral }) // Send the referral value to the backend
+                body: JSON.stringify({ referral })
             });
 
             if (!response.ok) {
@@ -73,14 +73,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const data = await response.json();
-            updateTable(data.data); // Update table with filtered data
+            updateTable(data.data, pageNumber, referral); // Update table with filtered data
         } catch (error) {
             console.error('Error:', error);
             alert('Error filtering patient data by referral status');
         }
     }
 
-    function updateTable(data, pageNumber = 1) {
+    function updateTable(data, pageNumber = 1, referral) {
+        if (referral === undefined) {
+            referral = null;
+        }
+        console.log("referall status:", referral);
+
         // Clear table body
         tableBody.innerHTML = "";
 
@@ -91,16 +96,18 @@ document.addEventListener("DOMContentLoaded", function () {
         // Populate table with patient data
         for (let i = startIndex; i < endIndex; i++) {
             const patient = data[i];
+            console.log("Patient Data:", patient); // Log patient data
             const row = document.createElement("tr");
             const cells = [
                 "encounterId", "end_tidal_co2", "feed_vol", "feed_vol_adm",
-                "fio2", "fio2_ratio", "insp_time", "oxygen_flow_rate",
-                "peep", "resp_rate", "tidal_vol", "tidal_vol_actual",
+                "fio2", "fio2_ratio", "insp_time", "oxygen_flow_rate", "peep",
+                "pip", "resp_rate", "sip", "tidal_vol", "tidal_vol_actual",
                 "tidal_vol_kg", "tidal_vol_spon", "bmi", "referral"
             ];
             cells.forEach(cell => {
                 const cellElement = document.createElement("td");
                 cellElement.textContent = patient[cell] ?? "";
+                console.log(`Cell (${cell}):`, patient[cell]); // Log cell value
                 row.appendChild(cellElement);
             });
 
@@ -110,36 +117,72 @@ document.addEventListener("DOMContentLoaded", function () {
         // Generate pagination links
         pagination.innerHTML = "";
         const totalPages = Math.ceil(data.length / itemsPerPage);
-        for (let i = 1; i <= totalPages; i++) {
+        const currentPage = pageNumber;
+        const prevPage = currentPage > 1 ? currentPage - 1 : 1;
+        const nextPage = currentPage < totalPages ? currentPage + 1 : totalPages;
+
+        const prevLink = document.createElement("a");
+        prevLink.href = "#";
+        prevLink.textContent = "« Previous";
+        prevLink.onclick = function () {
+            if (referral == null) {
+                displayPatients(prevPage);
+            }
+            else {
+                filterByReferral(referral, prevPage);
+            }
+        };
+        pagination.appendChild(prevLink);
+
+        for (let i = Math.max(1, currentPage - 1); i <= Math.min(totalPages, currentPage + 1); i++) {
             const link = document.createElement("a");
             link.href = "#";
             link.textContent = i;
             link.onclick = function () {
-                displayPatients(i);
+                if (referral == null) {
+                    displayPatients(i);
+                }
+                else {
+                    filterByReferral(referral, i);
+                }
             };
             pagination.appendChild(link);
         }
+
+        const nextLink = document.createElement("a");
+        nextLink.href = "#";
+        nextLink.textContent = "Next »";
+        nextLink.onclick = function () {
+            if (referral == null) {
+                displayPatients(nextPage);
+            }
+            else {
+                filterByReferral(referral, nextPage);
+            }
+        };
+        pagination.appendChild(nextLink);
     }
 
     // Event listeners for radio buttons
-document.querySelectorAll('input[name="filter"]').forEach(radio => {
-    radio.addEventListener('change', function () {
-        const filterValue = this.value;
-        let referralValue;
+    document.querySelectorAll('input[name="filter"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+            const filterValue = this.value;
+            let referralValue;
 
-        if (filterValue === 'all') {
-            // Fetch all patient data
-            displayPatients(1);
-        } else if (filterValue === 'do-not-need-referral') {
-            referralValue = false;
-        } else if (filterValue === 'need-referral') {
-            referralValue = true;
-        }
+            if (filterValue === 'all') {
+                // Fetch all patient data
+                displayPatients(1);
+            } else if (filterValue === 'do-not-need-referral') {
+                referralValue = false;
+                console.log("update function referral stat:", referralValue)
+            } else if (filterValue === 'need-referral') {
+                referralValue = true;
+            }
 
-        // Filter patient data by referral status
-        filterByReferral(referralValue);
+            // Filter patient data by referral status
+            filterByReferral(referralValue, 1);
+        });
     });
-});
 
 
     // Event listener for the filter button

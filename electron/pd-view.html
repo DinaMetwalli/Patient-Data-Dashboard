@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Patients Data</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="sidebar">
         <a href="index.html">Dashboard</a>
@@ -22,70 +24,73 @@
         </div>
 
         <div class="filter-container">
-        <div class="radio-buttons">
-            <input type="radio" id="all" name="filter" value="all" checked>
-            <label for="all">All</label>
+            <div class="radio-buttons">
+                <input type="radio" id="all" name="filter" value="all" checked>
+                <label for="all">All</label>
 
-            <input type="radio" id="do-not-need-referral" name="filter" value="do-not-need-referral">
-            <label for="do-not-need-referral">Do not need referral</label>
+                <input type="radio" id="do-not-need-referral" name="filter" value="do-not-need-referral">
+                <label for="do-not-need-referral">Do not need referral</label>
 
-            <input type="radio" id="need-referral" name="filter" value="need-referral">
-            <label for="need-referral">Need referral</label>
+                <input type="radio" id="need-referral" name="filter" value="need-referral">
+                <label for="need-referral">Need referral</label>
 
-            <input type="radio" id="referred" name="filter" value="referred">
-            <label for="referred">Referred</label>
-        </div>
-
-        <div class="bmi-container">
-    <div class="button-container">
-        <div class="dropdown">
-            <button class="dropbtn">Filter by BMI</button>
-            <div class="dropdown-content">
-                <input type="text" id="bmi-filter" placeholder="Enter BMI">
+                <input type="radio" id="referred" name="filter" value="referred">
+                <label for="referred">Referred</label>
             </div>
+
+            <div class="bmi-container">
+                <div class="button-container">
+                    <div class="dropdown">
+                        <button class="dropbtn">Filter by BMI</button>
+                        <div class="dropdown-content">
+                            <input type="text" id="bmi-filter" placeholder="Enter BMI">
+                        </div>
+                    </div>
+                    <button id="filter-button">Filter</button>
+                    <button class="auth-button" id="export-all-button">Export All</button>
+                </div>
+            </div>
+
+
         </div>
-        <button id="filter-button">Filter</button>
-        <button class="auth-button" id="export-all-button">Export All</button>
-    </div>
-</div>
-
-
-    </div>
     </div>
 
 
-        </div>
+    </div>
 
-        <div class="patient-data">
-            <table>
-                <thead>
-                    <tr>
-                        <th>encounterId</th>
-                        <th>end_tidal_co2</th>
-                        <th>feed_vol</th>
-                        <th>feed_vol_adm</th>
-                        <th>fio2</th>
-                        <th>fio2_ratio</th>
-                        <th>insp_time</th>
-                        <th>oxygen_flow_rate</th>
-                        <th>peep</th>
-                        <th>.resp_rate</th>
-                        <th>.tidal_vol</th>
-                        <th>.tidal_vol_actual</th>
-                        <th>.tidal_vol_kg</th>
-                        <th>.tidal_vol_spon</th>
-                        <th>.bmi</th>
-                        <th>.referral</th>
-                    </tr>
-                </thead>
-                <tbody id="patient-list">
-                    <!-- Sample data, replace with actual patient data -->
-                </tbody>
-            </table>
-            <div id="pagination"></div>
-        </div>
+    <div class="patient-data">
+        <table>
+            <thead>
+                <tr>
+                    <th>encounterId</th>
+                    <th>end_tidal_co2</th>
+                    <th>feed_vol</th>
+                    <th>feed_vol_adm</th>
+                    <th>fio2</th>
+                    <th>fio2_ratio</th>
+                    <th>insp_time</th>
+                    <th>oxygen_flow_rate</th>
+                    <th>peep</th>
+                    <th>pip</th>
+                    <th>.resp_rate</th>
+                    <th>sip</th>
+                    <th>tidal_vol</th>
+                    <th>tidal_vol_actual</th>
+                    <th>tidal_vol_kg</th>
+                    <th>tidal_vol_spon</th>
+                    <th>bmi</th>
+                    <th>referral</th>
+                </tr>
+            </thead>
+            <tbody id="patient-list">
+                <!-- Sample data, replace with actual patient data -->
+            </tbody>
+        </table>
+        <div id="pagination"></div>
+    </div>
     </div>
     <script src="pagination.js"></script>
     <script src="authwindow.js"></script>
 </body>
+
 </html>
