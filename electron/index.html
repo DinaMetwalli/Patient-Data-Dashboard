@@ -16,69 +16,70 @@
         <a href="reports.html">Reports</a>
         <a href="about.html">About</a>
         <a href="help.html">Help</a>
-    </div>
+        <a href="patient-data.html">Patient Data</a>
 
-    <div class="container">
-        <div class="title-container">
-            <h1>Medical Dashboard</h1>
-            <input type="file" id="fileInput" accept=".csv">
-            <button id="uploadBtn">Upload CSV</button>
-        </div>
-        <div id="loadingModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <div class="loader-container">
-                    <div class="loader"></div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="title-container">
+                <h1>Medical Dashboard</h1>
+                <input type="file" id="fileInput" accept=".csv">
+                <button id="uploadBtn">Upload CSV</button>
+            </div>
+            <div id="loadingModal" class="modal">
+                <div class="modal-content">
+                    <div class="loader-container">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="patient-category-container">
+                <div class="patient-category">
+                    <h3>Total Patients</h3>
+                    <p id="totalPatients">Loading...</p>
+                </div>
+                <div class="patient-category">
+                    <h3>Patients Needing Referral</h3>
+                    <p id="patientsNeedingReferral">Loading...</p>
+                </div>
+                <div class="patient-category">
+                    <h3>Patients Not Needing Referral</h3>
+                    <p id="patientsNotNeedingReferral">Loading...</p>
+                </div>
+                <div class="patient-category">
+                    <h3>Patients Referred</h3>
+                    <p id="patientsReferred">Loading...</p>
+                </div>
+            </div>
+            <div class="charts-container">
+                <div class="chart">
+                    <h2 class="chart-title">Percentage of People Referred or Not Referred</h2>
+                    <canvas id="pieChart"></canvas>
+                    <div id="pieChartLoading" class="loading-indicator"></div>
+                </div>
+
+                <div class="chart">
+                    <h2 class="chart-title">Respiratory Measurements Average</h2>
+                    <canvas id="respiratoryMeasurementsChart"></canvas>
+                    <div id="respiratoryMeasurementsChartLoading" class="loading-indicator"></div>
+                </div>
+
+                <div class="chart">
+                    <h2 class="chart-title">Mechanical Ventillation Average</h2>
+                    <canvas id="mechanicalVentillationChart"></canvas>
+                    <div id="mechanicalVentillationChartLoading" class="loading-indicator"></div>
+                </div>
+
+                <div class="chart">
+                    <h2 class="chart-title">Dietary Requirements Average</h2>
+                    <canvas id="dietaryRequirementsChart"></canvas>
+                    <div id="dietaryRequirementsChartLoading" class="loading-indicator"></div>
                 </div>
             </div>
         </div>
-
-
-        <div class="patient-category-container">
-            <div class="patient-category">
-                <h3>Total Patients</h3>
-                <p id="totalPatients">Loading...</p>
-            </div>
-            <div class="patient-category">
-                <h3>Patients Needing Referral</h3>
-                <p id="patientsNeedingReferral">Loading...</p>
-            </div>
-            <div class="patient-category">
-                <h3>Patients Not Needing Referral</h3>
-                <p id="patientsNotNeedingReferral">Loading...</p>
-            </div>
-            <div class="patient-category">
-                <h3>Patients Referred</h3>
-                <p id="patientsReferred">Loading...</p>
-            </div>
-        </div>
-        <div class="charts-container">
-            <div class="chart">
-                <h2 class="chart-title">Percentage of People Referred or Not Referred</h2>
-                <canvas id="pieChart"></canvas>
-                <div id="pieChartLoading" class="loading-indicator"></div>
-            </div>
-
-            <div class="chart">
-                <h2 class="chart-title">Respiratory Measurements Average</h2>
-                <canvas id="respiratoryMeasurementsChart"></canvas>
-                <div id="respiratoryMeasurementsChartLoading" class="loading-indicator"></div>
-            </div>
-
-            <div class="chart">
-                <h2 class="chart-title">Mechanical Ventillation Average</h2>
-                <canvas id="mechanicalVentillationChart"></canvas>
-                <div id="mechanicalVentillationChartLoading" class="loading-indicator"></div>
-            </div>
-
-            <div class="chart">
-                <h2 class="chart-title">Dietary Requirements Average</h2>
-                <canvas id="dietaryRequirementsChart"></canvas>
-                <div id="dietaryRequirementsChartLoading" class="loading-indicator"></div>
-            </div>
-        </div>
     </div>
-
     <script src="authwindow.js"></script>
     <script src="importcsv.js"></script>
     <script src="charts.js"></script>

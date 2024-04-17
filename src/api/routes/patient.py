@@ -15,7 +15,7 @@ def patient_data():
         csv_path = get_session_file_path()
         print(csv_path)
         patient_id = received_data.get('patient_id')
-        csv_path = received_data.get('csv_path')  # could change/remove according to sessions
+        csv_path = received_data.get('csv_path')  
 
         patient = ccu.patients(csv_path)
         data = patient.fetch_patient_data(patient_id)
@@ -49,11 +49,45 @@ def patient_diet_data():
 
         patient_id = received_data.get('patient_id')
         csv_path = get_session_file_path()
-        print(csv_path)  # could change/remove according to sessions
+        print(csv_path)  
 
         patient = ccu.patients(csv_path, patient_id)
         dietary_data = patient.dietary_req()
         data = dietary_data.fetch_dietary_req_data()
+
+        return jsonify({"success": True, "data": data})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)})
+    
+@patients_bp.route("/patient-resp", methods=["POST"])
+def patient_resp_data():
+    try:
+        received_data = request.json
+
+        patient_id = received_data.get('patient_id')
+        csv_path = get_session_file_path()
+        print(csv_path)  
+
+        patient = ccu.patients(csv_path, patient_id)
+        resp_data = patient.resp_measurments()
+        data = resp_data.fetch_resp_measurements_data()
+
+        return jsonify({"success": True, "data": data})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)})
+    
+@patients_bp.route("/patient-mech", methods=["POST"])
+def patient_mech_data():
+    try:
+        received_data = request.json
+
+        patient_id = received_data.get('patient_id')
+        csv_path = get_session_file_path()
+        print(csv_path)  
+
+        patient = ccu.patients(csv_path, patient_id)
+        mech_data = patient.mechanical_vent()
+        data = mech_data.fetch_mechanical_data()
 
         return jsonify({"success": True, "data": data})
     except Exception as e:
