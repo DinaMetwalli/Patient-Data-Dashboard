@@ -17,7 +17,6 @@ def filter_by_bmi():
 
         filters = ccu.filter()
         filtered_data = filters.filter_by_bmi(bmi, csv_file)
-        print("hi sisyers!!!!:", filtered_data)
         return jsonify({'success': True, 'data': filtered_data}), 200
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
