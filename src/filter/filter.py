@@ -7,13 +7,29 @@ class Filter:
         self.patients_data = None
         self.parser = ParseCSV()
 
-    def filter(self, csv_path):
+    def parse_csv(self, csv_path) -> None:
+        """
+        Parses provided CSV file and stores it in self.patients_data as pd.DataFrame.
+
+        Parameters:
+            csv_path (str): path to the CSV file
+        """
         # Import CSV data
         self.patients_data = self.parser.import_csv(csv_path)
 
-    def filter_by_referral(self, referral, csv_path):
+    def filter_by_referral(self, referral, csv_path) -> list:
+        """
+        Filters patient data by referral status, True and False.
+
+        Parameters:
+            referral (boolean): a boolean of the patient's referral status
+            csv_path (str): path to the CSV file
+
+        Returns:
+            filtered_patients_data (list): a list of dictionaries of filtered patients
+        """
         if self.patients_data is None or len(self.patients_data) == 0:
-            self.filter(csv_path)
+            self.parse_csv(csv_path)
 
         if referral is not False:
             status = 1.0
@@ -37,9 +53,19 @@ class Filter:
 
         return filtered_patients_data
 
-    def filter_by_bmi(self, bmi, csv_path):
+    def filter_by_bmi(self, bmi, csv_path) -> list:
+        """
+        Filters patient data by BMI.
+
+        Parameters:
+            bmi (int): an integer of the BMI to be added to filter
+            csv_path (str): path to the CSV file
+
+        Returns:
+            filtered_patients_data (list): a list of dictionaries of filtered patients
+        """
         if self.patients_data is None or len(self.patients_data) == 0:
-            self.filter(csv_path)
+            self.parse_csv(csv_path)
 
         bmi_prefix = str(bmi)[:2]
         filtered_patients_data = []
