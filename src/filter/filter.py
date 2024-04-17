@@ -37,12 +37,23 @@ class Filter:
 
         return filtered_patients_data
 
-    def filter_by_bmi(self, bmi):
+    def filter_by_bmi(self, bmi, csv_path):
         if self.patients_data is None or len(self.patients_data) == 0:
-            self.filter()
-        # Filter out empty strings in 'bmi' column
-        filtered_data = self.patients_data[self.patients_data['bmi'].astype(str).str.strip() != '']
-        filtered_data['bmi'] = pd.to_numeric(filtered_data['bmi'], errors='coerce')  # Convert to numeric, coerce errors
-        filtered_data = filtered_data[round(filtered_data['bmi']) == round(bmi)]
-        return filtered_data
+            self.filter(csv_path)
 
+        bmi_prefix = str(bmi)[:2]
+        filtered_patients_data = []
+        
+        bmi_data = self.patients_data.copy()
+        # Find two first digits of each bmi column and convert them to string
+        bmi_data['bmi_prefix'] = bmi_data['bmi'].astype(str).str[:2]
+        filtered_data = bmi_data[bmi_data['bmi_prefix'] == bmi_prefix]
+        
+        if not filtered_data.empty:
+            for index, row in filtered_data.iterrows():
+                patient_data = {}
+                for column in self.patients_data.columns:
+                    patient_data[column] = row[column]
+                filtered_patients_data.append(patient_data)
+
+        return filtered_patients_data

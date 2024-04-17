@@ -11,7 +11,13 @@ filter_bp = Blueprint('filter', __name__)
 def filter_by_bmi():
     try:
         bmi = request.json.get('bmi')
-        filtered_data = ccu.filter_by_bmi(bmi)
+        print("recieved bmi: ", bmi)
+
+        csv_file = get_session_file_path()
+
+        filters = ccu.filter()
+        filtered_data = filters.filter_by_bmi(bmi, csv_file)
+        print("hi sisyers!!!!:", filtered_data)
         return jsonify({'success': True, 'data': filtered_data}), 200
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500

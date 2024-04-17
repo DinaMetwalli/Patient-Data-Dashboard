@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    async function filterByBMI(bmi) {
+    async function filterByBMI(bmi, pageNumber) {
         try {
             const response = await fetch('http://localhost:6002/filter-by-bmi', {
                 method: 'POST',
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const data = await response.json();
-            updateTable(data.data); // Update table with filtered data
+            updateTable(data.data, pageNumber, bmi); // Update table with filtered data
         } catch (error) {
             console.error('Error:', error);
             alert('Error filtering patient data by BMI');
@@ -80,11 +80,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function updateTable(data, pageNumber = 1, referral) {
+    function updateTable(data, pageNumber = 1, referral, bmi) {
         if (referral === undefined) {
             referral = null;
         }
+        if (bmi === undefined) {
+            bmi = null;
+        }
+
         console.log("referall status:", referral);
+        console.log("bmi:", bmi);
 
         // Clear table body
         tableBody.innerHTML = "";
@@ -125,8 +130,11 @@ document.addEventListener("DOMContentLoaded", function () {
         prevLink.href = "#";
         prevLink.textContent = "« Previous";
         prevLink.onclick = function () {
-            if (referral == null) {
+            if (referral == null && bmi == null) {
                 displayPatients(prevPage);
+            }
+            else if (referral == null) {
+                filterByBMI(bmi, prevPage)
             }
             else {
                 filterByReferral(referral, prevPage);
@@ -139,8 +147,11 @@ document.addEventListener("DOMContentLoaded", function () {
             link.href = "#";
             link.textContent = i;
             link.onclick = function () {
-                if (referral == null) {
+                if (referral == null && bmi == null) {
                     displayPatients(i);
+                }
+                else if (referral == null) {
+                    filterByBMI(bmi, i)
                 }
                 else {
                     filterByReferral(referral, i);
@@ -153,8 +164,11 @@ document.addEventListener("DOMContentLoaded", function () {
         nextLink.href = "#";
         nextLink.textContent = "Next »";
         nextLink.onclick = function () {
-            if (referral == null) {
+            if (referral == null && bmi == null) {
                 displayPatients(nextPage);
+            }
+            else if (referral == null) {
+                filterByBMI(bmi, nextPage)
             }
             else {
                 filterByReferral(referral, nextPage);
