@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const node_path = require('node:path');
 const path = require('path');
+const fs = require('fs');
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -8,6 +9,7 @@ function createWindow() {
         height: 900,
         webPreferences: {
             nodeIntegration: true,
+            contextIsolation: false,
             preload: node_path.join(__dirname, 'preload.js'),
             webSecurity: false
         }
@@ -15,7 +17,22 @@ function createWindow() {
 
     win.setMenuBarVisibility(false);
 
-    win.loadFile(path.join(__dirname, 'index.html'));
+    const rootDir = path.resolve(__dirname, '..');
+    const configFilePath = path.join(rootDir, 'config.json');
+
+    let configContent;
+    try {
+        configContent = fs.readFileSync(configFilePath, 'utf8');
+    } catch (err) {
+        console.error('Error reading config.json:', err);
+    }
+
+    // Check if config.json file is empty or not and redirect to correct page
+    if (configContent === null || configContent === undefined || configContent.trim() === '') {
+        win.loadFile(path.join(__dirname, 'setup.html'));
+    } else {
+        win.loadFile(path.join(__dirname, 'login.html'));
+    }
 
     win.on('closed', function() {
         app.quit();
