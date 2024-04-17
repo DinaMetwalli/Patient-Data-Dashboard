@@ -1,18 +1,35 @@
 from src.api.main import main
-# from src.api.app import main
-# from src.api.flask import main
 from src.Reports.ReportGenerator import Report
 from src.Reports.AverageReport import AverageReport
 from src.Patients.Patients import Patient
 from src.ccu.CCU import CCU
+from src.ccu.Authenticator import Authenticator
+import os
 
 # Start server:
 main()
+
+
+# # Test authenticator:
+# auth = Authenticator()
+# auth.generate_passkeys("secret_password", "super_secret_password", "ultimate_secret_password")
+# ccu = CCU()
+# ccu.entry_password("secret_password")
+# ccu.import_password("super_secret_password")
+# ccu.export_password("ultimate_secret_password")
+# ccu.entry("wrong_password")
+# ccu.entry("wrong_password")
 
 # # Generate average data report:
 # report = Report()
 # avg_report = report.average("Data.csv")
 # avg_report.generate_report("Average_data_report.pdf")
+
+# # Generate average data report:
+# report = Report()
+# avg_report = report.average("Data.csv")
+# avg_report.generate_report("Average_data_report.pdf")
+# >>>>>>> main
 
 # # Generate patient report:
 # rep = Report()
