@@ -8,6 +8,7 @@ from .routes.charts import charts_bp
 from .routes.authentication import auth_bp
 from .routes.analyser import analyser_bp
 from .routes.referal import referal_bp
+from .routes.filters import filter_bp
 
 
 parser = ParseCSV()
@@ -30,6 +31,7 @@ def main():
     app.register_blueprint(auth_bp)
     app.register_blueprint(analyser_bp)
     app.register_blueprint(referal_bp)
+    app.register_blueprint(filter_bp)
 
     print("Starting the server...")
     
