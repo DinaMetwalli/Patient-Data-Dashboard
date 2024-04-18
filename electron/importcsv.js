@@ -1,20 +1,53 @@
 const fileInput = document.getElementById('fileInput');
 const uploadBtn = document.getElementById('uploadBtn');
+const importPasskeysButton = document.getElementById('uploadBtn');
+const importPass = document.getElementById('passkey');
+const resultElement = document.getElementById('message');
 let loadingModal;
 
-// Check if the script is executing in the main window or in an authentication window
 if (window.opener && window.opener.loadingModal) {
-    loadingModal = window.opener.loadingModal; // Access the loading modal from the main window
+    loadingModal = window.opener.loadingModal;
 } else {
-    loadingModal = document.getElementById('loadingModal'); // Access the loading modal from the current window
+    loadingModal = document.getElementById('loadingModal');
 }
 
-uploadBtn.addEventListener('click', () => {
+uploadBtn.addEventListener('click', async () => {
+    const import_pass = importPass.value;
+
+    if (import_pass === "") {
+        resultElement.textContent = `Please enter import passkey.`;
+        return;
+    }
+
+    try {
+        const authResponse = await fetch('http://localhost:6002/auth-import', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ import_pass })
+        });
+
+        if (!authResponse.ok) {
+            throw new Error('Failed to validate passkey');
+        }
+
+        const authData = await authResponse.json();
+        const authResult = authData.success;
+
+        if (!authResult) {
+            resultElement.textContent = `Result: ${authData.message}`;
+            return;
+        }
+    } catch (error) {
+        console.error('Error validating passkey:', error);
+        return;
+    }
+
     fileInput.click();
 });
 
 fileInput.addEventListener('change', async () => {
-    console.log("HI SISTERS!!!");
     if (loadingModal) {
         loadingModal.style.display = 'block';
 
@@ -35,20 +68,19 @@ fileInput.addEventListener('change', async () => {
             }
 
             const data = await response.json();
-            // console.log(data); // Log response from the server
+            console.log(data); // Log response from the server
 
             if (data.success) {
-                window.opener.alert('CSV file uploaded successfully!'); //check this!
+                window.opener.alert('CSV file uploaded successfully!');
                 location.reload();
             } else {
                 alert('Error uploading file: ' + data.message);
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('Error uploading file');
+            window.opener.alert('Error uploading file');
         } finally {
             if (loadingModal) {
-                // Detach the loading modal from the document body
                 loadingModal.style.display = 'none';
                 document.body.removeChild(loadingModal);
             }
@@ -57,7 +89,6 @@ fileInput.addEventListener('change', async () => {
         console.error('Loading modal not found');
     }
 
-    // Close the window after detaching the loading modal
     window.close();
 });
 
