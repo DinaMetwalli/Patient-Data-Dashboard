@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const itemsPerPage = 50;
+    const itemsPerPage = 30;
     const tableBody = document.getElementById("patient-list");
     const pagination = document.getElementById("pagination");
     const rows = Array.from(tableBody.getElementsByTagName("tr"));

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Dashboard</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -22,26 +23,34 @@
             <h1>Reports</h1>
             <p>This page allows you to generate reports based on the uploaded data.</p>
         </div>
-        <div>
-            <div>
-                <h1>Patient Report</h1>
-                <label for="p_id">Patient ID:</label>
-                <input type="number" id="patient_id" name="p_id">
-                <label for="pdf">PDF Export Name:</label>
-                <input type="text" id="export_patient" name="pdf">
+        <div class="main-form">
+            <div class="reports-form">
+            <div class="form">
+                <h2>Individual Patient Report</h2>
+                <div class="form-group">
+                <input type="number" id="patient_id" class="form-element" name="p_id" placeholder="Patient ID">
+                <label for="patient_id"></label>
+
+                <input type="text" id="export_patient" class="form-element" name="pdf" placeholder="PDF Export Name">
+                <label for="export_patient"></label>
+
+                </div>
+                <button id="patient_report" class="submit-btn">Generate</button>
             </div>
-            <div>
-                <h1>Patient Report</h1>
-                <label for="pdf">PDF Export Name:</label>
-                <input type="text" id="export_average" name="pdf">
+                </div>
+
+
+            <div class="reports-form">
+            <div class="form">
+                <h2>Average Patient Report</h2>
+                <div class="form-group">
+                <input type="text" id="export_average" class="form-element" name="pdf" placeholder="PDF Export Name">
+                    <label for="export_average"></label>
             </div>
-            <div class="upload-content">
-                <button id="patient_report">Generate Patient Report</button>
-                <button id="average_report">Generate Average Data Report</button>
-            </div>
+                <button id="average_report" class="submit-btn">Generate</button>
         </div>
     </div>
     <script src="reports.js"></script>
-</body>
+    </body>
 
 </html>
