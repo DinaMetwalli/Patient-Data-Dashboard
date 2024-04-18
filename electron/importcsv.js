@@ -6,7 +6,7 @@ uploadBtn.addEventListener('click', () => {
     fileInput.click();
 });
 
-fileInput.addEventListener('change', async() => {
+fileInput.addEventListener('change', async () => {
     loadingModal.style.display = 'block';
 
     try {
