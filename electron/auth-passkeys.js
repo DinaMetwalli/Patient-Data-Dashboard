@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const importPasskeysButton = document.getElementById('import-btn');
+    const importPasskeysButton = document.getElementById('uploadBtn');
 
     const importPass = document.getElementById('passkey');
     const resultElement = document.getElementById('message');

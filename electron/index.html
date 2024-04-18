@@ -18,25 +18,13 @@
         <a href="help.html">Help</a> -->
         <a href="patient-data.html">Patient Data</a>
 
-        <!--
-    <div class="container">
-        <div class="title-container">
-            <h1>Medical Dashboard</h1>
-            <input type="file" id="fileInput" accept=".csv">
-            <button id="uploadBtn" class="auth-button">Upload CSV</button>
-        </div>
-        <div id="loadingModal" class="modal">
-            <div class="modal-content">
-                <div class="loader-container">
-                    <div class="loader"></div>
- -->
     </div>
     <div>
         <div class="container">
             <div class="title-container">
                 <h1>Medical Dashboard</h1>
-                <input type="file" id="fileInput" accept=".csv">
-                <button id="uploadBtn" class="auth-button">Upload CSV</button>
+                <!-- <input type="file" id="fileInput" accept=".csv"> -->
+                <button id="open-window" class="auth-button">Upload CSV</button> <!-- class="auth-button" -->
             </div>
             <div id="loadingModal" class="modal">
                 <div class="modal-content">
@@ -92,8 +80,8 @@
             </div>
         </div>
     </div>
+    <script src="importcsv.js" data-loading-modal="loadingModal"></script>
     <script src="authwindow.js"></script>
-    <script src="importcsv.js"></script>
     <script src="charts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 </body>
