@@ -39,7 +39,7 @@ def auth_export():
     try:
         received_data = request.json
 
-        password = received_data.get('export_password')
+        password = received_data.get('export_pass')
 
         ccu.export_password(password)
         
