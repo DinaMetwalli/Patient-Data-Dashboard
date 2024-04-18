@@ -1,47 +1,99 @@
 const fileInput = document.getElementById('fileInput');
 const uploadBtn = document.getElementById('uploadBtn');
-const loadingModal = document.getElementById('loadingModal');
+const importPasskeysButton = document.getElementById('uploadBtn');
+const importPass = document.getElementById('passkey');
+const resultElement = document.getElementById('message');
+let loadingModal;
 
-uploadBtn.addEventListener('click', () => {
-    fileInput.click();
-});
+if (window.opener && window.opener.loadingModal) {
+    loadingModal = window.opener.loadingModal;
+} else {
+    loadingModal = document.getElementById('loadingModal');
+}
 
-fileInput.addEventListener('change', async () => {
-    loadingModal.style.display = 'block';
+uploadBtn.addEventListener('click', async () => {
+    const import_pass = importPass.value;
+
+    if (import_pass === "") {
+        resultElement.textContent = `Please enter import passkey.`;
+        return;
+    }
 
     try {
-        const filePath = fileInput.files[0].path;
-
-        // Send POST request using fetch API
-        const response = await fetch('http://127.0.0.1:6002/upload', {
+        const authResponse = await fetch('http://localhost:6002/auth-import', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ filePath })
+            body: JSON.stringify({ import_pass })
         });
 
-        if (!response.ok) {
-            throw new Error('Failed to upload file');
+        if (!authResponse.ok) {
+            throw new Error('Failed to validate passkey');
         }
 
-        const data = await response.json();
-        console.log(data); // Log response from the server
+        const authData = await authResponse.json();
+        const authResult = authData.success;
 
-        if (data.success) {
-            alert('CSV file uploaded successfully!');
-            location.reload();
-        } else {
-            alert('Error uploading file: ' + data.message);
+        if (!authResult) {
+            resultElement.textContent = `Result: ${authData.message}`;
+            return;
         }
     } catch (error) {
-        console.error('Error:', error);
-        alert('Error uploading file');
-    } finally {
-        loadingModal.style.display = 'none';
+        console.error('Error validating passkey:', error);
+        return;
     }
+
+    fileInput.click();
+});
+
+fileInput.addEventListener('change', async () => {
+    if (loadingModal) {
+        loadingModal.style.display = 'block';
+
+        try {
+            const filePath = fileInput.files[0].path;
+
+            // Send POST request using fetch API
+            const response = await fetch('http://localhost:6002/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ filePath })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to upload file');
+            }
+
+            const data = await response.json();
+            console.log(data); // Log response from the server
+
+            if (data.success) {
+                window.opener.alert('CSV file uploaded successfully!');
+                window.opener.location.reload();
+            } else {
+                alert('Error uploading file: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            window.opener.alert('Error uploading file');
+        } finally {
+            if (loadingModal) {
+                loadingModal.style.display = 'none';
+                document.body.removeChild(loadingModal);
+            }
+        }
+    } else {
+        console.error('Loading modal not found');
+    }
+
+    window.close();
 });
 
 function closeModal() {
-    loadingModal.style.display = 'none';
+    if (loadingModal) {
+        loadingModal.style.display = 'none';
+    }
 }

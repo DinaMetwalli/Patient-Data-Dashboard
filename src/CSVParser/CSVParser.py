@@ -52,8 +52,10 @@ class ParseCSV():
         try:
             if data is not None:
                 # Export DataFrame to CSV
-                if export_name is not None:
-                    data.to_csv(export_name, index=False)
+                if export_name is None:
+                    root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+                    result_file = os.path.join(root_directory, "Analysis_Results.csv")
+                    data.to_csv(result_file, index=False)
                 else:
                     desktop_path = Path.home() / "Desktop"
                     analysed_data_path = desktop_path / "Analysed Data"
@@ -61,7 +63,7 @@ class ParseCSV():
                     if not os.path.exists(analysed_data_path):
                         os.mkdir(analysed_data_path)
                         
-                    data.to_csv(analysed_data_path / "Analysis_Results.csv", index=False)
+                    data.to_csv(analysed_data_path / export_name, index=False)
 
                 print("CSV file exported successfully.")
             
