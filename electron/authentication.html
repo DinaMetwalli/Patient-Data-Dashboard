@@ -10,12 +10,13 @@
 
 <body>
     <div class="login-container">
-        <form id="login-form">
-            <label for="passkey">Enter Passkey:</label>
-            <input type="password" id="passkey" name="passkey" required>
-            <button type="submit">Login</button>
-        </form>
+        <label for="passkey">Enter Passkey:</label>
+        <input type="text" id="passkey" name="passkey" required>
+        <button type="submit" id="import-btn">Input Passkey</button>
+        <p id=message></p>
     </div>
+    <script src="auth-passkeys.js"></script>
+    <script src="authwindow.js"></script>
 </body>
 
 </html>

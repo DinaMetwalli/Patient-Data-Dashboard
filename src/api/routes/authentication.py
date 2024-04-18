@@ -12,7 +12,7 @@ def auth_entry():
     try:
         received_data = request.json
 
-        password = received_data.get('entry_password')
+        password = received_data.get('entry_pass')
         print(password)
 
         ccu.entry_password(password)
@@ -26,7 +26,7 @@ def auth_import():
     try:
         received_data = request.json
 
-        password = received_data.get('import_password')
+        password = received_data.get('import_pass')
 
         ccu.import_password(password)
         
