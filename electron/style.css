@@ -23,7 +23,7 @@ body {
 }
 
 .sidebar a:hover {
-    background-color: #6e96ef;
+    background-color: #9955bb;
     color: #000000;
     opacity: 80%;
 }
@@ -52,11 +52,30 @@ body {
 
 .patient-category {
     flex: 1;
-    background-color: #c0c0c0;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     margin-right: 10px;
+}
+
+#category-1 {
+background: linear-gradient(to bottom, #6A0DAD, #C8A2C8);
+
+}
+
+#category-2 {
+background: linear-gradient(to bottom, #DDA0DD, #8A2BE2);
+
+}
+
+#category-3 {
+background: linear-gradient(to bottom, #9932CC, #DA70D6);
+
+}
+
+#category-4 {
+background: linear-gradient(to bottom, #4B0082, #9370DB);
+
 }
 
 .patient-category:last-child {
@@ -109,8 +128,16 @@ body {
 
 /* Styles for patient data */
 
+.table-container {
+    border: 2px solid #ccc; /* Add border around the container */
+    padding: 10px; /* Add padding to the container */
+    border-radius: 10px; /* Optional: Add border radius for rounded corners */
+    overflow: auto; /* Optional: Add overflow property for scrolling if needed */
+}
+
 .patient-data {
-    margin-top: 20px;
+    width: 100%; /* Ensure the table fills the container */
+    border-collapse: collapse; /* Optional: Collapse border spacing */
 }
 
 .patient-data table {
@@ -118,20 +145,32 @@ body {
     border-collapse: collapse;
 }
 
-.patient-data th,
+/* Style the table header */
+.patient-data th {
+    background-color: #ffffff;
+    color: #212529;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #dee2e6; /* add bottom border */
+}
+
+/* Style alternating rows */
+.patient-data tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* Hover effect on rows */
+.patient-data tbody tr:hover {
+    background-color: #f2f2f2; /* hover color */
+}
+
+/* Style table cells */
 .patient-data td {
     padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #dee2e6; /* add bottom border */
 }
 
-.patient-data th {
-    background-color: #f2f2f2;
-}
-
-.patient-data tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
 
 
 /* Styles for filter options */
@@ -141,6 +180,13 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.dropdown-content input[type=text] {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 5px 0;
+
 }
 
 .radio-buttons {
@@ -165,7 +211,7 @@ body {
 }
 
 .radio-buttons input[type="radio"]:checked+label {
-    background-color: #007bff;
+    background-color: #9955bb;
     color: white;
 }
 
@@ -191,41 +237,6 @@ body {
     align-items: center;
 }
 
-.login-container h2 {
-    margin-top: 0;
-}
-
-#login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button[type="submit"] {
-    padding: 10px 20px;
-    background-color: rgb(106, 13, 173);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button[type="submit"]:hover {
-    background-color: rgb(160, 110, 200);
-}
 
 
 /* */
@@ -236,7 +247,7 @@ button[type="submit"]:hover {
 
 button {
     padding: 10px 20px;
-    background-color: rgb(106, 13, 173);
+    background-color: rgb(153, 85, 187);
     color: white;
     border: none;
     border-radius: 5px;
@@ -244,7 +255,7 @@ button {
 }
 
 button:hover {
-    background-color: rgb(160, 110, 200);
+    background-color: rgb(209, 140, 239);
 }
 
 .window-container {
@@ -254,35 +265,6 @@ button:hover {
     height: 100vh;
 }
 
-form {
-    text-align: center;
-}
-
-form label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-form input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-form button[type="submit"] {
-    padding: 10px 20px;
-    background-color: rgb(106, 13, 173);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-form button[type="submit"]:hover {
-    background-color: rgb(160, 110, 200);
-}
 
 #fileInput {
     display: none;
@@ -432,10 +414,9 @@ form button[type="submit"]:hover {
 /* Dropdown button */
 
 .dropbtn {
-    background-color: #3498db;
+    background-color: #9955bb;
     color: white;
     padding: 10px 30px;
-    font-size: 16px;
     border: none;
     position: relative;
 }
@@ -444,11 +425,11 @@ form button[type="submit"]:hover {
 /* Dropdown symbol */
 
 .dropbtn::after {
-    content: "\25BC";
+    content: "\25BE";
     /* Unicode for down arrow */
     position: absolute;
     top: 50%;
-    right: 5px;
+    right: 10px;
     /* Adjust as needed */
     transform: translateY(-50%);
 }
@@ -475,6 +456,7 @@ form button[type="submit"]:hover {
 
 #pagination {
     margin-top: 20px;
+    text-align: right;
 }
 
 #pagination a {
@@ -494,4 +476,305 @@ form button[type="submit"]:hover {
     background-color: #007bff;
     color: #fff;
     border-color: #007bff;
+}
+
+/* REGISTRATION FORM */
+.reports-form {
+  display: flex;
+  justify-content: center; /* Adjust spacing between form wrappers */
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping to next line if necessary */
+}
+
+.reports-form .form {
+  width: calc(50% - 20px); /* Adjust width of each form wrapper */
+  max-width: 480px;
+  padding: 32px;
+  background-color: #EEE;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px; /* Add margin between form wrappers */
+}
+
+.reports-form .form h2 {
+  color: #3c3c3c;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+.reports-form .form .form-group {
+  position: relative;
+  vertical-align: middle;
+  display: block;
+  margin-top: 16px;
+  transition: 0.4s;
+}
+.reports-form .form .form-group::before, .form_wrapper .form .form-group::after {
+  box-sizing: inherit;
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  z-index: 2;
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+.reports-form .form .form-group::before {
+  top: 0;
+  left: 0;
+  transition: border-color 0s ease-out 1s, width 0.25s ease-out 0.75s, height 0.25s ease-out 0.5s;
+}
+.reports-form .form .form-group::after {
+  bottom: 0;
+  right: 0;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.25s, height 0.25s ease-out;
+}
+.reports-form .form .form-group label {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  transition: 0.4s;
+  z-index: 5;
+  color: #3c3c3c;
+  font-size: 18px;
+}
+.reports-form .form .form-group .form-element {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 93%;
+  background-color: #FFF;
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  margin-bottom: 16px;
+  padding: 16px;
+  color: #3c3c3c;
+  font-size: 18px;
+  font-weight: 300;
+  transition: 0.4s;
+}
+.reports-form .form .form-group.is-active {
+  margin-top: 32px;
+}
+.reports-form .form .form-group.is-active::before, .form_wrapper .form .form-group.is-active::after {
+  width: 100%;
+  height: 100%;
+}
+
+.reports-form .form .form-group.is-active .form-element {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+.reports-form .form .form-group.is-active label {
+  top: -16px;
+  left: 0px;
+  color: #3c3c3c;
+  font-size: 12px;
+}
+.reports-form .form .submit-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin-left: auto;
+  border: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0px;
+  padding: 16px;
+  margin-bottom: 16px;
+  color: #3c3c3c;
+  font-size: 18px;
+  text-transform: uppercase;
+  transition: 0.4s;
+  cursor: pointer;
+}
+.reports-form .form .submit-btn::before, .form_wrapper .form .submit-btn::after {
+  box-sizing: inherit;
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  z-index: 2;
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+.reports-form .form .submit-btn::before {
+  top: 0;
+  left: 0;
+  transition: border-color 0s ease-out 1s, width 0.25s ease-out 0.75s, height 0.25s ease-out 0.5s;
+}
+.reports-form .form .submit-btn::after {
+  bottom: 0;
+  right: 0;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.25s, height 0.25s ease-out;
+}
+.reports-form .form .submit-btn:hover {
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.2);
+}
+.reports-form .form .submit-btn:hover::before, .form_wrapper .form .submit-btn:hover::after {
+  width: 100%;
+  height: 100%;
+}
+.reports-form .form .submit-btn:hover::before {
+  border-top-color: #6d0f78;
+  border-right-color: #6d0f78;
+  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+}
+.reports-form .form .submit-btn:hover::after {
+  border-bottom-color: #6d0f78;
+  border-left-color: #6d0f78;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+}
+
+.form_wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form_wrapper .form {
+  width: 100%;
+  max-width: 480px;
+  padding: 32px;
+  background-color: #EEE;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.form_wrapper .form h2 {
+  color: #3c3c3c;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+.form_wrapper .form .form-group {
+  position: relative;
+  vertical-align: middle;
+  display: block;
+  margin-top: 16px;
+  transition: 0.4s;
+}
+.form_wrapper .form .form-group::before, .form_wrapper .form .form-group::after {
+  box-sizing: inherit;
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  z-index: 2;
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+.form_wrapper .form .form-group::before {
+  top: 0;
+  left: 0;
+  transition: border-color 0s ease-out 1s, width 0.25s ease-out 0.75s, height 0.25s ease-out 0.5s;
+}
+.form_wrapper .form .form-group::after {
+  bottom: 0;
+  right: 0;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.25s, height 0.25s ease-out;
+}
+.form_wrapper .form .form-group label {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  transition: 0.4s;
+  z-index: 5;
+  color: #3c3c3c;
+  font-size: 18px;
+}
+.form_wrapper .form .form-group .form-element {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 93%;
+  background-color: #FFF;
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  margin-bottom: 16px;
+  padding: 16px;
+  color: #3c3c3c;
+  font-size: 18px;
+  font-weight: 300;
+  transition: 0.4s;
+}
+.form_wrapper .form .form-group.is-active {
+  margin-top: 32px;
+}
+.form_wrapper .form .form-group.is-active::before, .form_wrapper .form .form-group.is-active::after {
+  width: 100%;
+  height: 100%;
+}
+
+.form_wrapper .form .form-group.is-active .form-element {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+.form_wrapper .form .form-group.is-active label {
+  top: -16px;
+  left: 0px;
+  color: #3c3c3c;
+  font-size: 12px;
+}
+.form_wrapper .form .submit-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin-left: auto;
+  border: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0px;
+  padding: 16px;
+  margin-bottom: 16px;
+  color: #3c3c3c;
+  font-size: 18px;
+  text-transform: uppercase;
+  transition: 0.4s;
+  cursor: pointer;
+}
+.form_wrapper .form .submit-btn::before, .form_wrapper .form .submit-btn::after {
+  box-sizing: inherit;
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  z-index: 2;
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+.form_wrapper .form .submit-btn::before {
+  top: 0;
+  left: 0;
+  transition: border-color 0s ease-out 1s, width 0.25s ease-out 0.75s, height 0.25s ease-out 0.5s;
+}
+.form_wrapper .form .submit-btn::after {
+  bottom: 0;
+  right: 0;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.25s, height 0.25s ease-out;
+}
+.form_wrapper .form .submit-btn:hover {
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.2);
+}
+.form_wrapper .form .submit-btn:hover::before, .form_wrapper .form .submit-btn:hover::after {
+  width: 100%;
+  height: 100%;
+}
+.form_wrapper .form .submit-btn:hover::before {
+  border-top-color: #6d0f78;
+  border-right-color: #6d0f78;
+  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+}
+.form_wrapper .form .submit-btn:hover::after {
+  border-bottom-color: #6d0f78;
+  border-left-color: #6d0f78;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
 }

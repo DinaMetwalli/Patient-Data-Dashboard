@@ -10,20 +10,24 @@
 </head>
 
 <body>
-    <div class="container">
-        <div>
-            <h1>Authentication</h1>
-        </div>
-        <div>
+    <div class="form_wrapper">
+        <div class="form">
+            <h1>Authentication</h1><br>
             <h2>Setup Passkeys</h2>
-            <label for="entry">Entry Passkey:</label>
-            <input type="text" id="entry-pass" name="entry" required>
-            <label for="import">Import Passkey:</label>
-            <input type="text" id="import-pass" name="import" required>
-            <label for="export">Export Passkey:</label>
-            <input type="text" id="export-pass" name="export" required>
+            <div class="form-group">
+            <input type="text" id="entry-pass" class="form-element" name="entry" placeholder="Entry Passkey" required>
+            <label for="entry-pass"></label>
+            </div>
+            <div class="form-group">
+            <input type="text" id="import-pass" class="form-element" name="import" placeholder="Import Passkey" required>
+            <label for="import-pass"></label>
+            </div>
+            <div class="form-group">
+            <input type="text" id="export-pass" class="form-element" name="export" placeholder="Export Passkey" required>
+            <label for="export-pass"></label>
+            </div>
             <p>IMPORTANT NOTE: Make sure to remember your passkeys as they cannot be changed!</p>
-            <button id="setup-btn">Setup Keys & Proceed</button>
+            <button id="setup-btn" class="submit-btn">Setup Keys</button>
             <p id=result></p>
         </div>
     </div>
