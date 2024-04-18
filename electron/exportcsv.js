@@ -65,6 +65,6 @@ exportBtn.addEventListener('click', async () => {
 
     } catch (error) {
         console.error('Error:', error);
-        alert('Error fetching exporting CSV');
+        alert('Error exporting CSV');
     }
 });
