@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     inputPasskeysButton.addEventListener('click', async () => {
 
-        const entry_password = entryInput.value;
+        const entry_pass = entryInput.value;
         try {
             const response = await fetch('http://localhost:6002/auth-entry', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ entry_password })
+                body: JSON.stringify({ entry_pass })
             });
 
             if (!response.ok) {
