@@ -72,7 +72,7 @@ fileInput.addEventListener('change', async () => {
 
             if (data.success) {
                 window.opener.alert('CSV file uploaded successfully!');
-                location.reload();
+                window.opener.location.reload();
             } else {
                 alert('Error uploading file: ' + data.message);
             }

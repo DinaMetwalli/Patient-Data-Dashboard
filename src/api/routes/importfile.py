@@ -18,8 +18,8 @@ def upload_file():
         parser = ccu.csv_parser()
         parser.export_csv(analysis_data)
 
-        desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
-        result_file = os.path.join(desktop_path, "Analysed Data/Analysis_Results.csv")
+        root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+        result_file = os.path.join(root_directory, "Analysis_Results.csv")
 
         if not file_path:
             return jsonify({'success': False, 'message': 'No file path provided'}), 400

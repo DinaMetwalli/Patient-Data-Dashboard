@@ -10,6 +10,7 @@ exportBtn.addEventListener('click', async () => {
         return;
     }
 
+    let isAuthenticated = false;
     try {
         const authResponse = await fetch('http://localhost:6002/auth-export', {
             method: 'POST',
@@ -25,6 +26,7 @@ exportBtn.addEventListener('click', async () => {
 
         const authData = await authResponse.json();
         const authResult = authData.success;
+        isAuthenticated = authData.success;
 
         if (!authResult) {
             resultElement.textContent = `Result: ${authData.message}`;
@@ -33,5 +35,36 @@ exportBtn.addEventListener('click', async () => {
     } catch (error) {
         console.error('Error validating passkey:', error);
         return;
+    }
+
+    if (!isAuthenticated) {
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:6002/export', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to export CSV');
+        }
+
+        const responseData = await response.json();
+        const result = responseData.success;
+
+        if (!result) {
+            alert('Error Exporting File');
+        }
+        else {
+            alert('CSV File Exported Successfully!');
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error fetching exporting CSV');
     }
 });
