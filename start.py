@@ -9,27 +9,15 @@ import os
 # Start server:
 main()
 
-
-# # Test authenticator:
-# auth = Authenticator()
-# auth.generate_passkeys("secret_password", "super_secret_password", "ultimate_secret_password")
 # ccu = CCU()
-# ccu.entry_password("secret_password")
-# ccu.import_password("super_secret_password")
-# ccu.export_password("ultimate_secret_password")
-# ccu.entry("wrong_password")
-# ccu.entry("wrong_password")
+# filters = ccu.filter()
+# data = filtered_data = filters.filter_by_referral(True, "ExportedData.csv")
+# print(data)
 
 # # Generate average data report:
 # report = Report()
 # avg_report = report.average("Data.csv")
 # avg_report.generate_report("Average_data_report.pdf")
-
-# # Generate average data report:
-# report = Report()
-# avg_report = report.average("Data.csv")
-# avg_report.generate_report("Average_data_report.pdf")
-# >>>>>>> main
 
 # # Generate patient report:
 # rep = Report()
