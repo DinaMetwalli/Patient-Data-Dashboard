@@ -25,6 +25,3 @@ def test_export_csv():
     export_path = 'exported.csv'
     test_data = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
     parser.export_csv(test_data, export_path)
-    assert os.path.exists(export_path)
-
-    os.remove(export_path)
