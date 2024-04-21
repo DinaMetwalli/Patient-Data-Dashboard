@@ -104,9 +104,6 @@ class Patient():
     
     def get_referral_status(self) -> bool:
         """Get patient's referral status"""
-        # Note: if ML algorithm saves output to CSV file, this function is correct,
-        # as a patient's instance could be created with the path of the resulted CSV,
-        # and this will function the same.
         return bool(self.referral)
     
     def dietary_req(self) -> DietaryRequirements:
@@ -118,4 +115,5 @@ class Patient():
         return RespiratoryMeasurments(self.patient_id, self.patient_data)
 
     def mechanical_vent(self) -> MechanicalVentilation:
+        """Get patient's mechanical ventilation data"""
         return MechanicalVentilation(self.patient_id, self.patient_data)
