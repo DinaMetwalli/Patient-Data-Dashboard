@@ -12,7 +12,7 @@ pip install -r .\requirements.txt
 To run the program, open two terminals. In the first, navigate to the project's root directory and run the following command to start the server:
 
 ```bash
-py run.py
+py main.py
 ```
 
 ### Open The GUI App
